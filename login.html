@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sign In | ArcticAir - Air Conditioning Sales & Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: {
+                        semibold: '500',
+                        bold: '600',
+                        extrabold: '800',
+                        black: '900'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* =========================================
+           CORE STYLES & VARIABLES (ARCTICAIR THEME)
+           ========================================= */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* STRICT NO SCROLL LOCK FROM TEMPLATE */
+        html, body { 
+            height: 100vh !important; 
+            width: 100vw !important;
+            overflow: hidden !important; 
+            font-family: 'Inter', sans-serif; 
+            margin: 0;
+            padding: 0;
+        }
+
+        /* === ARCTICAIR THEME VARIABLES (Cool Blue) === */
+        :root {
+            /* Backgrounds */
+            --bg-color: #FAFAFA;
+            --bg-secondary: #F0F9FF; 
+            
+            /* Card & Text */
+            --bg-card: #FFFFFF; 
+            --card-border: #E2E8F0; 
+            --text-main: #0F172A; 
+            --text-muted: #475569; 
+            
+            /* Inputs */
+            --input-bg: #F8FAFC; 
+            --input-border: #E2E8F0;
+            --input-focus-bg: #FFFFFF;
+            --input-text: #0F172A;
+            --input-icon: #94A3B8;
+            
+            --page-text: #475569; 
+            --toggle-bg: #E2E8F0; 
+            
+            /* Accents & Buttons */
+            --accent-color: #0EA5E9; /* Sky Blue */
+            --accent-hover: #0284C7; /* Darker Blue */
+            --btn-text: #FFFFFF;
+            
+            --radius: 20px; 
+            --shadow: 0 25px 50px -12px rgba(14, 165, 233, 0.15);
+            --btn-shadow: 0 4px 10px 0 rgba(14, 165, 233, 0.2);
+            --btn-shadow-hover: 0 8px 15px -3px rgba(14, 165, 233, 0.4);
+        }
+
+        /* DARK MODE */
+        body.dark-mode {
+            --bg-color: #020617; 
+            --bg-secondary: #0F172A;
+
+            --bg-card: #1E293B; 
+            --card-border: #334155; 
+            --text-main: #F8FAFC; 
+            --text-muted: #94A3B8; 
+            
+            --input-bg: #0F172A; 
+            --input-border: #334155;
+            --input-focus-bg: #020617;
+            --input-text: #F8FAFC;
+            --input-icon: #64748B;
+            
+            --page-text: #E2E8F0; 
+            --toggle-bg: #334155; 
+            
+            --accent-color: #38BDF8; 
+            --accent-hover: #0EA5E9; 
+            --btn-text: #020617; 
+
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+            --btn-shadow: 0 4px 10px 0 rgba(56, 189, 248, 0.2);
+            --btn-shadow-hover: 0 8px 15px -3px rgba(56, 189, 248, 0.4);
+        }
+
+        body { 
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-color) 100%);
+            transition: background-color 0.5s ease;
+            display: flex;
+            flex-direction: column; 
+            position: relative;
+        }
+
+        /* Animated Background Orbs for New Aesthetic */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.4;
+            pointer-events: none;
+            animation: floatOrb 10s infinite alternate ease-in-out;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 40vw; height: 40vw; background: var(--accent-color); }
+        .orb-2 { bottom: -10%; right: -10%; width: 35vw; height: 35vw; background: var(--accent-hover); animation-delay: -5s; }
+
+        @keyframes floatOrb {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 30px) scale(1.1); }
+        }
+
+        /* RTL SUPPORT */
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-2 { margin-left: 0; margin-right: 0.5rem; }
+        [dir="rtl"] .mr-3 { margin-left: 0.75rem; margin-right: 0; }
+        [dir="rtl"] .input-icon { left: auto; right: 14px; }
+        [dir="rtl"] .input-field { padding: 0 40px 0 14px !important; }
+        [dir="rtl"] .btn-icon { margin-left: 0; margin-right: 6px; transform: rotate(180deg); }
+
+        /* =========================================
+           TOP CONTROLS BAR (NO HOME BUTTON)
+           ========================================= */
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end; 
+            align-items: center;
+            padding: 1.5rem 2rem;
+            gap: 1rem;
+            z-index: 50;
+            flex-shrink: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .toggle { 
+            width: 40px; height: 22px; 
+            background: var(--toggle-bg); 
+            border: 1px solid var(--card-border);
+            border-radius: 50px; position: relative; cursor: pointer; transition: 0.3s; 
+            flex-shrink: 0;
+        }
+        .toggle::before { 
+            content: ''; position: absolute; width: 16px; height: 16px; 
+            background: white; border-radius: 50%; top: 2px; left: 3px; 
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1); box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+        }
+        body.dark-mode .toggle::before { left: 19px; background: var(--accent-color); box-shadow: none; }
+        
+        .top-btn-text { 
+            font-size: 0.65rem; font-weight: 800; color: var(--page-text); 
+            background: var(--bg-card); border: 1px solid var(--card-border); 
+            padding: 6px 12px; border-radius: 50px; cursor: pointer; transition: 0.3s; 
+            text-transform: uppercase; letter-spacing: 1px; 
+        }
+        .top-btn-text:hover { border-color: var(--accent-color); color: var(--accent-color); }
+
+        /* MAIN WRAPPER - CENTERED */
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 1rem;
+            z-index: 10;
+        }
+
+        /* NEW PREMIUM SOLID LOGIN CARD (Exact template sizing) */
+        .login-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--card-border);
+            border-top: 4px solid var(--accent-color); /* Premium accent top */
+            border-radius: var(--radius);
+            padding: clamp(1.25rem, 3vh, 2rem) 2rem;
+            width: 100%;
+            max-width: 380px; /* Exact match to template */
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            gap: clamp(12px, 2vh, 18px); 
+            position: relative;
+            overflow: hidden !important; 
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HEADERS - LOGO */
+        .auth-logo { display: flex; justify-content: center; margin-bottom: 4px; }
+        .auth-logo a { color: var(--text-main) !important; text-decoration: none; }
+        
+        .auth-header { text-align: center; }
+        .auth-header h2 { font-size: clamp(1.2rem, 3vh, 1.5rem); font-weight: 800; color: var(--text-main); margin-bottom: 4px; letter-spacing: -0.5px; }
+        .auth-header p { font-size: clamp(0.75rem, 1.5vh, 0.8rem); color: var(--text-muted); margin: 0; font-weight: 500; }
+
+        /* COMPACT VERTICAL FORM (Exact template structural rules) */
+        form { display: flex; flex-direction: column; gap: clamp(10px, 1.5vh, 14px); margin: 0; }
+
+        .form-group { display: flex; flex-direction: column; gap: 4px; }
+        .form-group label { 
+            font-size: 0.65rem; font-weight: 800; color: var(--text-main); 
+            margin: 0; text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--input-icon); font-size: 0.85rem; pointer-events: none; transition: color 0.3s; }
+        
+        .input-field {
+            width: 100%;
+            height: clamp(40px, 5vh, 44px); /* Exact template size */
+            padding: 0 14px 0 38px;
+            border: 2px solid var(--input-border);
+            background-color: var(--input-bg);
+            color: var(--input-text);
+            border-radius: 10px; /* Modern soft radius */
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            margin: 0;
+        }
+        .input-field::placeholder { color: var(--input-icon); opacity: 0.8; font-weight: 500; }
+        .input-field:focus { outline: none; border-color: var(--accent-color); background-color: var(--input-focus-bg); box-shadow: 0 4px 12px rgba(14, 165, 233, 0.05); }
+        body.dark-mode .input-field:focus { box-shadow: 0 4px 12px rgba(56, 189, 248, 0.05); }
+        .input-field:focus + .input-icon, .input-field:focus ~ .input-icon { color: var(--accent-color); }
+
+        /* Password Field Specifics */
+        .password-field { padding-right: 36px !important; }
+        .password-toggle {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            color: var(--input-icon); background: none; border: none; cursor: pointer;
+            padding: 4px; font-size: 0.9rem; z-index: 5; transition: color 0.3s;
+        }
+        .password-toggle:hover { color: var(--accent-color); }
+        [dir="rtl"] .password-field { padding-right: 38px !important; padding-left: 36px !important; }
+        [dir="rtl"] .password-toggle { right: auto; left: 10px; }
+
+        /* UTILITY ROW */
+        .utility-row { display: flex; align-items: center; justify-content: space-between; margin: 2px 0 0 0; padding: 0; }
+        
+        .custom-checkbox { display: flex; align-items: center; cursor: pointer; position: relative; }
+        .custom-checkbox input { position: absolute; opacity: 0; cursor: pointer; height: 0; width: 0; }
+        .checkmark {
+            height: 16px; width: 16px; background-color: var(--input-bg);
+            border: 2px solid var(--input-border); border-radius: 4px;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s ease;
+        }
+        .custom-checkbox input:checked ~ .checkmark { background-color: var(--accent-color); border-color: var(--accent-color); }
+        .custom-checkbox input:checked ~ .checkmark::after { content: '\f00c'; font-family: 'Font Awesome 6 Free'; font-weight: 900; color: white; font-size: 9px; }
+        body.dark-mode .custom-checkbox input:checked ~ .checkmark::after { color: var(--text-main); }
+
+        /* NEW BUTTON DESIGN (Template Sizes Preserved) */
+        .auth-btn {
+            width: 100%;
+            height: clamp(42px, 5vh, 46px); /* Exact template size */
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover)); 
+            color: var(--btn-text); 
+            border: none; border-radius: 50px; 
+            font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: var(--btn-shadow);
+            margin-top: 4px;
+        }
+        .auth-btn:hover { transform: translateY(-2px); box-shadow: var(--btn-shadow-hover); filter: brightness(1.05); }
+
+        /* DIVIDER */
+        .divider { text-align: center; position: relative; margin: 4px 0; }
+        .divider::before { content: ''; position: absolute; left: 0; top: 50%; width: 100%; height: 1px; background: var(--card-border); }
+        .divider span { position: relative; background: var(--bg-card); padding: 0 12px; color: var(--text-muted); font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; z-index: 1; transition: background 0.3s; }
+
+        /* SOCIALS (Exact template sizes) */
+        .social-login { display: flex; justify-content: center; gap: 12px; }
+        .social-btn {
+            width: 40px; height: 40px; /* Exact match */
+            border: 2px solid var(--input-border); border-radius: 10px; 
+            background-color: var(--input-bg); font-size: 1rem; color: var(--text-main);
+            cursor: pointer; transition: all 0.2s ease;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .social-btn:hover { background-color: var(--accent-color); border-color: var(--accent-color); color: var(--btn-text); transform: translateY(-2px); box-shadow: var(--btn-shadow-hover); }
+
+        /* FOOTER LINKS */
+        .login-link { text-align: center; font-size: 0.75rem; color: var(--text-muted); font-weight: 500; margin-top: 4px; }
+        .login-link a { color: var(--accent-color); font-weight: 800; text-decoration: none; transition: all 0.2s; }
+        .login-link a:hover { color: var(--accent-hover); text-decoration: underline; }
+
+        /* RESPONSIVENESS PRESERVED FROM TEMPLATE */
+        @media (max-width: 400px), (max-height: 650px) {
+            .login-card { padding: 1.5rem 1.25rem !important; width: 95%; gap: 12px !important; border-radius: 16px; }
+            form { gap: 10px !important; }
+            .auth-header p { display: none; }
+            .input-field { height: 38px !important; font-size: 0.8rem !important; }
+            .auth-btn { height: 40px !important; }
+            .social-btn { width: 36px !important; height: 36px !important; font-size: 0.9rem !important; }
+            .utility-row span { font-size: 0.65rem !important; }
+            .utility-row a { font-size: 0.65rem !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Decorative Background Orbs -->
+    <div class="bg-orb orb-1"></div>
+    <div class="bg-orb orb-2"></div>
+
+    <!-- TOP BAR (NO HOME BUTTON) -->
+    <div class="top-bar">
+        <div class="flex items-center gap-2" style="cursor: pointer;" onclick="document.getElementById('theme-toggle').click()">
+            <i class="fas fa-sun text-xs" style="color: var(--page-text); transition: color 0.3s;"></i>
+            <div class="toggle" id="theme-toggle"></div>
+            <i class="fas fa-moon text-xs" style="color: var(--page-text); transition: color 0.3s;"></i>
+        </div>
+        <button id="rtl-toggle" class="top-btn-text">RTL Mode</button>
+    </div>
+
+    <!-- MAIN CENTERED CONTENT -->
+    <div class="main-wrapper">
+        <div class="login-card">
+
+            <!-- ARCTICAIR EXACT LOGO SIZING & PLACEMENT -->
+            <div class="auth-logo">
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
+                    ArcticAir
+                </a>
+            </div>
+
+            <div class="auth-header">
+                <h2>Welcome Back</h2>
+                <p>Sign in to access your HVAC dashboard and track appointments.</p>
+            </div>
+
+            <!-- FORM WITH TEMPLATE DOM STRUCTURE & LABEL SIZING -->
+            <form id="login-form">
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" class="input-field" placeholder="client@arcticair.com" required>
+                        <i class="fas fa-envelope input-icon"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" class="input-field password-field" placeholder="••••••••" required>
+                        <i class="fas fa-lock input-icon"></i>
+                        <button type="button" class="password-toggle" id="toggle-password" tabindex="-1" aria-label="Toggle password visibility">
+                            <i class="fas fa-eye" id="toggle-icon"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- BUTTON & UTILITY PLACEMENT PRESERVED -->
+                <div class="utility-row">
+                    <label class="custom-checkbox">
+                        <input type="checkbox">
+                        <div class="checkmark"></div>
+                        <span class="ml-2 text-[0.7rem] font-semibold" style="color: var(--text-muted);">Remember me</span>
+                    </label>
+                    <a href="#" class="text-[0.7rem] font-bold transition whitespace-nowrap hover:opacity-80" style="color: var(--accent-color);">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="auth-btn">Sign In <i class="fas fa-arrow-right ml-2 text-xs"></i></button>
+            </form>
+
+            <div class="divider"><span>Or authenticate with</span></div>
+
+            <!-- 3 SOCIAL BUTTONS PRESERVED -->
+            <div class="social-login">
+                <button class="social-btn" type="button" title="Sign in with Google"><i class="fab fa-google"></i></button>
+                <button class="social-btn" type="button" title="Sign in with Apple"><i class="fab fa-apple"></i></button>
+                <button class="social-btn" type="button" title="Sign in with X"><i class="fa-brands fa-x-twitter"></i></button>
+            </div>
+
+            <div class="login-link">
+                New to ArcticAir? <a href="register.html">Create an Account</a>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- THEME LOGIC ---
+        const themeToggle = document.getElementById('theme-toggle');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.classList.add('active');
+        }
+
+        themeToggle.onclick = (e) => {
+            e.stopPropagation(); 
+            document.body.classList.toggle('dark-mode');
+            const isDark = document.body.classList.contains('dark-mode');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            themeToggle.classList.toggle('active', isDark);
+        };
+
+        // --- RTL LOGIC ---
+        const rtlToggle = document.getElementById('rtl-toggle');
+        const savedDir = localStorage.getItem('dir') || 'ltr';
+        
+        if (savedDir === 'rtl') {
+            document.documentElement.dir = 'rtl';
+            rtlToggle.innerText = "LTR MODE";
+        }
+
+        rtlToggle.onclick = () => {
+            const isRTL = document.documentElement.dir === 'rtl';
+            document.documentElement.dir = isRTL ? 'ltr' : 'rtl';
+            localStorage.setItem('dir', isRTL ? 'ltr' : 'rtl');
+            rtlToggle.innerText = isRTL ? 'RTL MODE' : 'LTR MODE';
+        };
+
+        // --- PASSWORD TOGGLE LOGIC ---
+        const togglePasswordBtn = document.getElementById('toggle-password');
+        const passwordInput = document.getElementById('password');
+        const toggleIcon = document.getElementById('toggle-icon');
+
+        togglePasswordBtn.addEventListener('click', () => {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            toggleIcon.className = type === 'password' ? 'fas fa-eye' : 'fas fa-eye-slash';
+        });
+
+        // --- FORM SUBMISSION ---
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            window.location.href = 'user.html'; 
+        });
+    </script>
+</body>
+</html>

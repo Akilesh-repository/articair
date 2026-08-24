@@ -1,0 +1,9 @@
+# 404 Page
+/    /index.html    200
+/*    /404.html   404
+
+# Optional: Redirect www to non-www
+https://www.your-domain.com/*  https://your-domain.com/:splat  301!
+
+# Optional: Force HTTPS
+http://*  https://:splat  301!

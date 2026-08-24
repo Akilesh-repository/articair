@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | ArcticAir</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* === MINIMAL CORE STYLES & VARIABLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            min-height: 100dvh;
+            overflow-x: hidden;
+            background-color: var(--dash-bg);
+            color: var(--text-main);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        /* Adapted to ArcticAir Theme (Cool Blue) */
+        :root {
+            --bg-color: #FAFAFA;
+            --dash-bg: #F0F9FF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --accent-color: #0EA5E9;
+            --accent-dark: #0284C7;
+            --border-color: #E2E8F0;
+            --sidebar-bg: #FFFFFF;
+            --sidebar-text: #0F172A;
+            --sidebar-muted: #64748B;
+            --sidebar-hover: rgba(14, 165, 233, 0.08);
+            --sidebar-active: rgba(14, 165, 233, 0.12);
+            --sidebar-border: #E2E8F0;
+            --sidebar-width: 260px;
+            --card-bg: #FFFFFF;
+            --radius: 16px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            --btn-shadow: 0 4px 14px 0 rgba(14, 165, 233, 0.2);
+        }
+
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --dash-bg: #0F172A;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --border-color: #1E293B;
+            --card-bg: #111827;
+            --accent-color: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --sidebar-bg: #111827;
+            --sidebar-text: #F8FAFC;
+            --sidebar-muted: #94A3B8;
+            --sidebar-hover: rgba(56, 189, 248, 0.1);
+            --sidebar-active: rgba(56, 189, 248, 0.15);
+            --sidebar-border: #1E293B;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+        }
+
+        /* RTL & UTILITIES */
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        .dash-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* LAYOUT */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--sidebar-border);
+            height: 100dvh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding: 24px 16px;
+            transition: all 0.3s;
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            color: var(--sidebar-text);
+        }
+
+        [dir="rtl"] .sidebar {
+            left: auto;
+            right: 0;
+            border-right: none;
+            border-left: 1px solid var(--sidebar-border);
+        }
+
+        .main-wrapper {
+            margin-left: var(--sidebar-width);
+            min-height: 100dvh;
+            display: flex;
+            flex-direction: column;
+            transition: margin 0.3s;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        [dir="rtl"] .main-wrapper {
+            margin-left: 0;
+            margin-right: var(--sidebar-width);
+        }
+
+        .topbar {
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            background: var(--dash-bg);
+            position: sticky;
+            top: 0;
+            z-index: 40;
+        }
+
+        .content-area {
+            padding: 0 32px 32px 32px;
+            flex-grow: 1;
+            width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            [dir="rtl"] .sidebar {
+                transform: translateX(100%);
+            }
+
+            [dir="rtl"] .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-wrapper {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                width: 100%;
+            }
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+            .content-area {
+                padding: 0 20px 20px 20px;
+            }
+
+            .hamburger-btn {
+                display: block !important;
+            }
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 45;
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .hamburger-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* NAV ITEMS */
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: var(--sidebar-muted);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 4px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 1rem;
+            text-align: center;
+            margin-right: 12px;
+        }
+
+        [dir="rtl"] .nav-item i {
+            margin-right: 0;
+            margin-left: 12px;
+        }
+
+        .nav-item:hover {
+            color: var(--accent-color);
+            background: var(--sidebar-hover);
+        }
+
+        .nav-item.active {
+            background: var(--sidebar-active);
+            color: var(--accent-color);
+        }
+
+        /* ICONS & BUTTONS */
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-main);
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .icon-btn:hover {
+            background: var(--accent-color);
+            color: #FFF;
+            border-color: var(--accent-color);
+        }
+
+        .btn-action {
+            background: var(--accent-color);
+            color: #FFF;
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: none;
+            box-shadow: var(--btn-shadow);
+            transition: transform 0.2s;
+        }
+
+        .btn-action:hover {
+            transform: translateY(-2px);
+            background: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--accent-color);
+            padding: 8px 16px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
+            border: 2px solid var(--accent-color);
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--accent-color);
+            color: #FFF;
+        }
+
+        /* TABLES & TABS */
+        .clean-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        [dir="rtl"] .clean-table {
+            text-align: right;
+        }
+
+        .clean-table th {
+            padding: 12px 16px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .clean-table td {
+            padding: 16px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: middle;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 50px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.1);
+            color: #10B981;
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.1);
+            color: #f59e0b;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .badge-danger {
+            background: rgba(239, 68, 68, 0.1);
+            color: #ef4444;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .badge-info {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--accent-color);
+            border: 1px solid rgba(14, 165, 233, 0.2);
+        }
+
+        .tab-section {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .tab-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <aside class="sidebar" id="sidebar">
+        <!-- Exact Same Logo Styling and Size Applied to ArcticAir -->
+        <div class="mb-10 px-4 bg-transparent py-2">
+            <div class="flex items-center flex-shrink-0">
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
+                    ArcticAir
+                </a>
+            </div>
+        </div>
+
+        <nav class="flex-grow">
+            <p class="text-[10px] font-semibold uppercase tracking-widest mb-3 px-4 text-[var(--text-muted)]">Operations
+            </p>
+            <a class="nav-item active tab-btn" data-target="a-dash"><i class="fas fa-chart-pie"></i> Dashboard</a>
+            <a class="nav-item tab-btn" data-target="a-orders"><i class="fas fa-clipboard-list"></i> Work Orders</a>
+            <a class="nav-item tab-btn" data-target="a-services"><i class="fas fa-layer-group"></i> Services &
+                Pricing</a>
+            <a class="nav-item tab-btn" data-target="a-customers"><i class="fas fa-users"></i> Customers</a>
+
+            <p class="text-[10px] font-semibold uppercase tracking-widest mt-8 mb-3 px-4 text-[var(--text-muted)]">
+                System
+            </p>
+            <a class="nav-item tab-btn" data-target="a-settings"><i class="fas fa-cog"></i> Settings</a>
+            <a href="login.html" class="nav-item mt-6 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20"><i
+                    class="fas fa-sign-out-alt"></i> Logout</a>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <header class="topbar">
+            <div class="flex items-center gap-4">
+                <button class="hamburger-btn" id="sidebar-toggle"><i class="fas fa-bars"></i></button>
+                <div
+                    class="hidden md:flex items-center bg-[var(--card-bg)] border border-[var(--border-color)] rounded-full px-4 py-2 w-64">
+                    <i class="fas fa-search text-[var(--text-muted)] mr-2 text-sm"></i>
+                    <input type="text" placeholder="Search orders or clients..."
+                        class="bg-transparent border-none outline-none w-full text-sm text-[var(--text-main)]">
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="icon-btn hidden sm:flex" id="rtl-toggle"><i class="fas fa-align-right"></i></button>
+                <button class="icon-btn" id="theme-toggle"><i class="fas fa-moon"></i></button>
+                <div
+                    class="w-8 h-8 rounded-full bg-[var(--accent-color)] text-white flex items-center justify-center font-semibold text-sm ml-2">
+                    AD</div>
+            </div>
+        </header>
+
+        <main class="content-area mt-6">
+
+            <!-- Dashboard Tab -->
+            <div id="a-dash" class="tab-section active">
+                <h2 class="text-2xl font-bold text-[var(--text-main)] mb-6">Facility Overview</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="dash-card p-5 border-t-4 border-[var(--accent-color)]">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-1">
+                            Active
+                            Jobs</p>
+                        <h3 class="text-2xl font-bold text-[var(--text-main)]">42</h3>
+                    </div>
+                    <div class="dash-card p-5 border-t-4 border-emerald-500">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-1">
+                            Monthly
+                            Revenue</p>
+                        <h3 class="text-2xl font-bold text-[var(--text-main)]">$142.5K</h3>
+                    </div>
+                    <div class="dash-card p-5 border-t-4 border-purple-500">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-[var(--text-muted)] mb-1">
+                            Total
+                            Clients</p>
+                        <h3 class="text-2xl font-bold text-[var(--text-main)]">3,204</h3>
+                    </div>
+                    <div class="dash-card p-5 border-t-4 border-red-500 bg-red-50 dark:bg-red-900/10 cursor-pointer tab-btn"
+                        data-target="a-orders">
+                        <p class="text-[10px] font-semibold uppercase tracking-widest text-red-500 mb-1">Urgent Repairs
+                        </p>
+                        <h3 class="text-2xl font-bold text-red-600">8 Jobs</h3>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div class="dash-card p-6 overflow-x-auto lg:col-span-2">
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="font-semibold text-[var(--text-main)]">Recent Jobs</h3>
+                            <button class="btn-outline tab-btn" data-target="a-orders">View All</button>
+                        </div>
+                        <table class="clean-table">
+                            <thead>
+                                <tr>
+                                    <th>Job ID</th>
+                                    <th>Customer</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="font-semibold">#JOB-405</span></td>
+                                    <td>Akira T.</td>
+                                    <td><span class="status-badge badge-warning">Pending Dispatch</span></td>
+                                    <td><button class="btn-action">Manage</button></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="font-semibold">#JOB-402</span></td>
+                                    <td>Marcus D.</td>
+                                    <td><span class="status-badge badge-info">In Progress</span></td>
+                                    <td><button class="btn-outline text-xs !py-1">Details</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="dash-card p-6 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-semibold text-[var(--text-main)] mb-4">Quick Actions</h3>
+                            <button
+                                class="w-full text-left p-3 mb-2 rounded bg-[var(--dash-bg)] border border-[var(--border-color)] hover:border-[var(--accent-color)] text-sm font-semibold transition-colors"><i
+                                    class="fas fa-plus text-[var(--accent-color)] mr-2"></i> Create Manual
+                                Job</button>
+                            <button
+                                class="w-full text-left p-3 mb-2 rounded bg-[var(--dash-bg)] border border-[var(--border-color)] hover:border-[var(--accent-color)] text-sm font-semibold transition-colors"><i
+                                    class="fas fa-tags text-[var(--accent-color)] mr-2"></i> Add New Service</button>
+                            <button
+                                class="w-full text-left p-3 rounded bg-[var(--dash-bg)] border border-[var(--border-color)] hover:border-[var(--accent-color)] text-sm font-semibold transition-colors"><i
+                                    class="fas fa-envelope text-[var(--accent-color)] mr-2"></i> Email
+                                Customers</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="a-orders" class="tab-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-[var(--text-main)]">Work Orders</h2>
+                    <button class="btn-action"><i class="fas fa-plus mr-1"></i> New Job</button>
+                </div>
+                <div class="dash-card p-6 overflow-x-auto w-full">
+                    <table class="clean-table min-w-[700px]">
+                        <thead>
+                            <tr>
+                                <th>Job ID</th>
+                                <th>Service Type</th>
+                                <th>Unit Type</th>
+                                <th>Customer Info</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="font-semibold">#JOB-405</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">Today</span></td>
+                                <td>Emergency AC Repair</td>
+                                <td>2-Ton Split Unit</td>
+                                <td><span class="text-sm font-semibold">Sarah Jenkins</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">sarah@email.com</span></td>
+                                <td><span class="status-badge badge-warning">Pending Dispatch</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-semibold">#JOB-402</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">May 14</span></td>
+                                <td>Annual Maintenance</td>
+                                <td>Central AC System</td>
+                                <td><span class="text-sm font-semibold">John Doe</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">john@email.com</span></td>
+                                <td><span class="status-badge badge-info">In Progress</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-semibold">#JOB-398</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">May 10</span></td>
+                                <td>New Installation</td>
+                                <td>Commercial Cassette</td>
+                                <td><span class="text-sm font-semibold">Liam Wilson</span><br><span
+                                        class="text-xs text-[var(--text-muted)]">liam@email.com</span></td>
+                                <td><span
+                                        class="status-badge badge-success bg-emerald-100 text-emerald-600 border-emerald-200">Completed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Services/Inventory Tab -->
+            <div id="a-services" class="tab-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-[var(--text-main)]">Services & Pricing</h2>
+                    <button class="btn-action"><i class="fas fa-folder-plus mr-1"></i> Add Service</button>
+                </div>
+                <div class="dash-card p-6 overflow-x-auto w-full">
+                    <table class="clean-table min-w-[600px]">
+                        <thead>
+                            <tr>
+                                <th>Service Name</th>
+                                <th>Category</th>
+                                <th>Base Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="font-semibold">Basic AC Tune-Up</span></td>
+                                <td><span class="text-sm text-[var(--text-muted)]">Maintenance</span></td>
+                                <td><span class="font-semibold text-lg text-[var(--text-main)]">$89.00</span> <span
+                                        class="text-xs text-[var(--text-muted)]">/ Visit</span></td>
+                                <td><span class="status-badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-semibold">New Installation</span></td>
+                                <td><span class="text-sm text-[var(--text-muted)]">Installation</span></td>
+                                <td><span class="font-semibold text-lg text-[var(--text-main)]">$199.00</span> <span
+                                        class="text-xs text-[var(--text-muted)]">/ Base</span></td>
+                                <td><span class="status-badge badge-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-semibold">Duct Cleaning & Sanitization</span></td>
+                                <td><span class="text-sm text-[var(--text-muted)]">Air Quality</span></td>
+                                <td><span class="font-semibold text-lg text-[var(--text-main)]">$250.00</span> <span
+                                        class="text-xs text-[var(--text-muted)]">/ Home</span></td>
+                                <td><span class="status-badge badge-warning">High Demand</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="font-semibold">Commercial HVAC Setup</span></td>
+                                <td><span class="text-sm text-[var(--text-muted)]">Commercial</span></td>
+                                <td><span class="font-semibold text-lg text-[var(--text-main)]">Custom</span> <span
+                                        class="text-xs text-[var(--text-muted)]">/ Quote</span></td>
+                                <td><span class="status-badge badge-danger">Unavailable</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customers Tab -->
+            <div id="a-customers" class="tab-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-[var(--text-main)]">Customer Directory</h2>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="dash-card p-6 text-center flex flex-col items-center">
+                        <div
+                            class="w-16 h-16 rounded-full bg-[var(--accent-color)] text-white flex items-center justify-center text-xl font-semibold mb-4">
+                            AT</div>
+                        <h3 class="font-semibold text-[var(--text-main)]">Akira Takahashi</h3>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Climate City, TX</p>
+                        <div class="w-full flex justify-between border-t border-[var(--border-color)] pt-4 mt-auto">
+                            <div class="text-left">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    Total
+                                    Jobs</p>
+                                <p class="font-semibold">4</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    LTV
+                                </p>
+                                <p class="font-semibold text-[var(--accent-color)]">$1,650</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash-card p-6 text-center flex flex-col items-center">
+                        <div
+                            class="w-16 h-16 rounded-full bg-[var(--accent-color)] text-white flex items-center justify-center text-xl font-semibold mb-4">
+                            MD</div>
+                        <h3 class="font-semibold text-[var(--text-main)]">Marcus D.</h3>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">North Haven, TX</p>
+                        <div class="w-full flex justify-between border-t border-[var(--border-color)] pt-4 mt-auto">
+                            <div class="text-left">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    Total
+                                    Jobs</p>
+                                <p class="font-semibold">2</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    LTV
+                                </p>
+                                <p class="font-semibold text-[var(--accent-color)]">$840</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dash-card p-6 text-center flex flex-col items-center">
+                        <div
+                            class="w-16 h-16 rounded-full bg-[var(--accent-color)] text-white flex items-center justify-center text-xl font-semibold mb-4">
+                            LW</div>
+                        <h3 class="font-semibold text-[var(--text-main)]">Liam Wilson</h3>
+                        <p class="text-xs text-[var(--text-muted)] mb-4">Westbrook Valley, TX</p>
+                        <div class="w-full flex justify-between border-t border-[var(--border-color)] pt-4 mt-auto">
+                            <div class="text-left">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    Total
+                                    Jobs</p>
+                                <p class="font-semibold">12</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[10px] text-[var(--text-muted)] uppercase tracking-wider font-semibold">
+                                    LTV
+                                </p>
+                                <p class="font-semibold text-[var(--accent-color)]">$14,250</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div id="a-settings" class="tab-section">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-bold text-[var(--text-main)]">System Settings</h2>
+                    <button class="btn-action">Save Changes</button>
+                </div>
+                <div class="dash-card p-6 max-w-2xl">
+                    <div class="grid grid-cols-1 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-2">Portal
+                                Name</label>
+                            <input type="text" value="ArcticAir Admin"
+                                class="w-full bg-[var(--dash-bg)] border border-[var(--border-color)] rounded-lg px-4 py-2 text-sm text-[var(--text-main)] outline-none focus:border-[var(--accent-color)]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-2">Support
+                                Email</label>
+                            <input type="email" value="support@arcticair.com"
+                                class="w-full bg-[var(--dash-bg)] border border-[var(--border-color)] rounded-lg px-4 py-2 text-sm text-[var(--text-main)] outline-none focus:border-[var(--accent-color)]">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-[var(--text-muted)] uppercase mb-2">Facility
+                                Address</label>
+                            <textarea rows="3"
+                                class="w-full bg-[var(--dash-bg)] border border-[var(--border-color)] rounded-lg px-4 py-2 text-sm text-[var(--text-main)] outline-none focus:border-[var(--accent-color)] resize-none">404 Cooling Avenue, Climate City, TX 75001</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        // Tab Logic
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabSections = document.querySelectorAll('.tab-section');
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                tabBtns.forEach(b => b.classList.remove('active'));
+                tabSections.forEach(s => s.classList.remove('active'));
+                const targetId = btn.getAttribute('data-target');
+                document.querySelectorAll(`[data-target="${targetId}"]`).forEach(b => b.classList.add('active'));
+                document.getElementById(targetId).classList.add('active');
+                if (window.innerWidth <= 1024) {
+                    document.getElementById('sidebar').classList.remove('active');
+                    document.getElementById('sidebar-overlay').classList.remove('active');
+                }
+            });
+        });
+
+        // Sidebar & Overlay Logic
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        function toggleSidebar() { sidebar.classList.toggle('active'); sidebarOverlay.classList.toggle('active'); }
+        document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Theme & RTL Logic
+        function applyTheme(isDark) {
+            document.body.classList.toggle('dark-mode', isDark);
+            document.getElementById('theme-toggle').querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+        }
+        applyTheme((localStorage.getItem('theme') || 'light') === 'dark');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark-mode');
+            applyTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        if (localStorage.getItem('dir') === 'rtl') document.documentElement.dir = 'rtl';
+        document.getElementById('rtl-toggle').addEventListener('click', () => {
+            const isRTL = document.documentElement.dir === 'rtl';
+            document.documentElement.dir = isRTL ? 'ltr' : 'rtl';
+            localStorage.setItem('dir', isRTL ? 'ltr' : 'rtl');
+        });
+    </script>
+</body>
+
+</html>

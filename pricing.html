@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing & Plans | ArcticAir - Air Conditioning Sales & Service</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontWeight: {
+                        semibold: '500',
+                        bold: '600',
+                        extrabold: '800',
+                        black: '900'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <style>
+        /* === RESET & CORE === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        /* === THEME VARIABLES (AC Company - Cool Blues) === */
+        :root {
+            --bg-color: #FAFAFA;
+            --bg-secondary: #F0F9FF; 
+            --bg-card: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --accent-color: #0EA5E9; /* Sky Blue */
+            --accent-dark: #0284C7;
+            --border-color: #E0F2FE;
+            --nav-bg: rgba(255, 255, 255, 0.7);
+            --drawer-bg: rgba(255, 255, 255, 0.98);
+            --menu-hover-bg: rgba(14, 165, 233, 0.08);
+        }
+
+        /* DARK MODE */
+        body.dark-mode {
+            --bg-color: #0F172A;
+            --bg-secondary: #1E293B;
+            --bg-card: #1E293B;
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --accent-color: #38BDF8;
+            --accent-dark: #0EA5E9;
+            --border-color: #334155;
+            --nav-bg: rgba(15, 23, 42, 0.65);
+            --drawer-bg: rgba(15, 23, 42, 0.98);
+            --menu-hover-bg: rgba(56, 189, 248, 0.15);
+        }
+
+        /* RTL SUPPORT */
+        [dir="rtl"] { text-align: right; }
+        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
+        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* === ULTRA-MODERN FLOATING PILL NAVBAR === */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1300px;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 100px;
+            padding: 0 24px;
+            height: 76px;
+            display: flex;
+            align-items: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
+        }
+        
+        body.dark-mode .navbar {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.6);
+        }
+
+        .navbar.scrolled {
+            top: 12px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1);
+        }
+        body.dark-mode .navbar.scrolled {
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 18px;
+            margin: 0 4px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: capitalize;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
+            border-radius: 50px;
+            z-index: 1;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--accent-color);
+            border-radius: 50px;
+            opacity: 0;
+            transform: scale(0.85);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+        .nav-link:hover::before, .nav-link.active::before {
+            opacity: 0.15;
+            transform: scale(1);
+        }
+        body.dark-mode .nav-link:hover::before, body.dark-mode .nav-link.active::before {
+            opacity: 0.25;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-dark);
+        }
+        body.dark-mode .nav-link:hover, body.dark-mode .nav-link.active {
+            color: #bae6fd;
+        }
+
+        .dropdown { position: relative; display: flex; align-items: center; height: 100%; }
+        .dropdown-menu {
+            position: absolute; top: calc(100% + 15px); left: 0; transform: translateY(15px) scale(0.95); opacity: 0;
+            visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100;
+            transform-origin: top left;
+        }
+        
+        .dropdown-inner {
+            background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 24px;
+            min-width: 220px; box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08); padding: 12px; display: flex; flex-direction: column; gap: 4px;
+        }
+        body.dark-mode .dropdown-inner { box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6); }
+        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+        
+        .dropdown-item {
+            display: block; padding: 10px 16px; border-radius: 12px; color: var(--text-main);
+            text-decoration: none; font-size: 13px; font-weight: 500; text-transform: capitalize;
+            transition: all 0.2s; text-align: left; white-space: nowrap;
+        }
+        .dropdown-item:hover { background: var(--menu-hover-bg); color: var(--accent-color); padding-left: 20px; }
+        [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
+
+        .theme-toggle-pill {
+            width: 52px; height: 28px; background: var(--bg-secondary); border-radius: 30px; position: relative;
+            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+            border: 1px solid var(--border-color);
+        }
+        .theme-toggle-pill i { font-size: 10px; z-index: 1; }
+        .theme-toggle-pill .fa-sun { color: #f59e0b; }
+        .theme-toggle-pill .fa-moon { color: #999; }
+        .theme-toggle-pill .thumb {
+            position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: white;
+            border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
+        }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(24px); background: #333; border-color: var(--border-color); }
+
+        .rtl-btn-style {
+            width: 44px; height: 28px; background: var(--bg-secondary); border-radius: 30px;
+            border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
+            font-size: 10px; font-weight: 800; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
+        }
+        .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+
+        .btn {
+            padding: 12px 28px; font-weight: 600; font-size: 13px; text-transform: capitalize;
+            letter-spacing: 0.5px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center;
+            justify-content: center; cursor: pointer; position: relative; border: 1px solid transparent; 
+            border-radius: 50px; 
+        }
+        .btn-solid { background: var(--accent-color); color: #FFFFFF !important; }
+        .btn-solid:hover { background: var(--accent-dark); transform: translateY(-2px); box-shadow: 0 8px 20px -3px rgba(14, 165, 233, 0.4); }
+        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
+        .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color) !important; background: var(--menu-hover-bg); transform: translateY(-2px); }
+
+        .drawer-overlay {
+            position: fixed; inset: 0; background: rgba(0, 0, 0, 0.6); z-index: 999;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(4px);
+        }
+        .drawer-overlay.active { opacity: 1; visibility: visible; }
+        .fullscreen-menu {
+            position: fixed; top: 0; right: 0; width: 100%; max-width: 400px; height: 100dvh;
+            background: var(--drawer-bg); z-index: 1001; display: flex; flex-direction: column;
+            opacity: 0; visibility: hidden; transform: translateX(100%); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border-color);
+        }
+        [dir="rtl"] .fullscreen-menu { right: auto; left: 0; transform: translateX(-100%); border-left: none; border-right: 1px solid var(--border-color); }
+        .fullscreen-menu.active { opacity: 1; visibility: visible; transform: translateX(0); }
+        .mobile-link {
+            display: block; width: 100%; padding: 16px 32px; font-size: 1.1rem; font-weight: 600;
+            text-transform: capitalize; letter-spacing: 0.5px; color: var(--text-main); text-decoration: none;
+            transition: all 0.3s; border-bottom: 1px solid var(--border-color);
+        }
+        .mobile-link:hover { color: var(--accent-color); padding-left: 40px; background: var(--menu-hover-bg); }
+        [dir="rtl"] .mobile-link:hover { padding-left: 32px; padding-right: 40px; }
+
+        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding-top: 80px; }
+        footer h4 { color: var(--text-main); font-weight: 600; font-size: 1.1rem; margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
+        footer a, footer li, footer span { color: var(--text-muted); text-decoration: none; transition: all 0.3s; font-size: 0.95rem; font-weight: 400; }
+        footer a:hover { color: var(--accent-color); }
+        .social-link-circle {
+            width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color);
+            display: flex; align-items: center; justify-content: center; transition: all 0.3s;
+            color: var(--text-main); background: transparent;
+        }
+        .social-link-circle:hover { background: var(--accent-color); border-color: var(--accent-color); color: #FFFFFF; transform: translateY(-3px); }
+        .footer-bottom { border-top: 1px solid var(--border-color); padding: 32px 0; margin-top: 60px; }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar" id="main-nav">
+        <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
+            <div class="flex items-center flex-shrink-0">
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
+                    ArcticAir
+                </a>
+            </div>
+
+            <div class="hidden xl:flex justify-center items-center flex-1">
+                <div class="dropdown">
+                    <div class="nav-link">Home <i class="fas fa-chevron-down text-[9px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="index.html" class="dropdown-item">Home Page 1</a>
+                            <a href="home-2.html" class="dropdown-item">Home Page 2</a>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <!-- Active class moved to Pricing -->
+                <a href="pricing.html" class="nav-link active">Pricing</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <div class="dropdown">
+                    <div class="nav-link">Dashboard <i class="fas fa-chevron-down text-[9px] ml-1 opacity-50"></i></div>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-inner">
+                            <a href="user.html" class="dropdown-item">User Dashboard</a>
+                            <a href="admin.html" class="dropdown-item">Admin Dashboard</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hidden xl:flex items-center gap-3">
+                <div id="theme-toggle-desktop" class="theme-toggle-pill" title="Toggle Dark Mode">
+                    <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+                    <div class="thumb"></div>
+                </div>
+                <button id="rtl-btn" class="rtl-btn-style" title="Toggle LTR/RTL">LTR</button>
+                
+                <div class="w-px h-6 bg-[var(--border-color)] mx-2"></div>
+                
+                <!-- Buttons left completely untouched -->
+                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !py-1.5 !px-5 !text-[11px]">Login</a>
+                <a href="register.html" class="btn btn-solid !py-1.5 !px-5 !text-[11px]">Register</a>
+            </div>
+
+            <div class="xl:hidden flex items-center justify-end gap-4">
+                <button id="mobile-btn"
+                    class="text-2xl text-[var(--text-main)] transition-colors hover:text-[var(--accent-color)]">
+                    <i class="fas fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="drawer-overlay" id="drawer-overlay"></div>
+
+    <div class="fullscreen-menu" id="fullscreen-menu">
+        <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
+            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                style="color: var(--text-main) !important; text-decoration: none;">
+                <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
+                ArcticAir
+            </a>
+            <button id="close-menu"
+                class="w-10 h-10 rounded-full flex items-center justify-center transition-all text-xl text-[var(--text-main)] hover:bg-[var(--bg-secondary)] hover:text-[var(--accent-color)]">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="flex flex-col w-full overflow-y-auto flex-1 py-4">
+            <a href="index.html" class="mobile-link">Home Page 1</a>
+            <a href="home-2.html" class="mobile-link">Home Page 2</a>
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="services.html" class="mobile-link">Services</a>
+            <!-- Active styling applied to Pricing -->
+            <a href="pricing.html" class="mobile-link" style="color: var(--accent-color);">Pricing</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="faq.html" class="mobile-link">FAQ</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
+
+            <div class="px-8 mt-6 mb-2">
+                <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
+            </div>
+            <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">User Dashboard</a>
+            <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
+        </div>
+
+        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+            <div class="flex justify-between items-center w-full">
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <div id="theme-toggle-mobile" class="theme-toggle-pill"><i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+                        <div class="thumb"></div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
+                    <button id="rtl-toggle-mobile" class="rtl-btn-style">LTR</button>
+                </div>
+            </div>
+            <div class="flex gap-4 w-full">
+                <a href="login.html" class="btn btn-outline flex-1 !py-3">Login</a>
+                <a href="register.html" class="btn btn-solid flex-1 !py-3">Register</a>
+            </div>
+        </div>
+    </div>
+
+    <section class="relative w-full h-[100dvh] pt-[80px] lg:pt-[100px] flex items-center overflow-hidden bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-color)]">
+        
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div class="absolute -top-[10%] -right-[5%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full bg-[var(--accent-color)] opacity-5 blur-[100px]"></div>
+            <div class="absolute top-[40%] -left-[10%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full bg-[#38BDF8] opacity-5 blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10 h-full max-h-[800px]">
+            
+            <div class="flex flex-col items-center lg:items-start justify-center text-center lg:text-left h-full">
+                <span class="text-[var(--accent-dark)] bg-[var(--menu-hover-bg)] text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4 md:mb-6 px-4 py-2 rounded-full border border-[var(--border-color)] inline-flex items-center backdrop-blur-sm transition-colors duration-300">
+                    <i class="fas fa-tags mr-2"></i> Transparent Pricing
+                </span>
+
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 md:mb-6 text-[var(--text-main)] tracking-tight capitalize transition-colors duration-300">
+                    Clear Plans, <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-color)] to-[var(--accent-dark)]">No Hidden Fees.</span>
+                </h1>
+
+                <p class="text-[var(--text-muted)] text-base md:text-lg leading-relaxed font-medium mb-6 md:mb-10 max-w-lg transition-colors duration-300">
+                    Choose from our flexible maintenance packages and transparent service rates. We believe in upfront pricing to ensure you get the best value for your climate control needs.
+                </p>
+
+                <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 w-full sm:w-auto">
+                    <a href="#plans" class="btn btn-solid !py-3 md:!py-4 !px-8 md:!px-10 text-sm">
+                        View Plans
+                    </a>
+                    <a href="contact.html" class="btn btn-outline !py-3 md:!py-4 !px-8 md:!px-10 text-sm">
+                        Custom Quote
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative w-full h-full flex justify-center items-center pb-8 lg:pb-0">
+                <div class="absolute top-[10%] right-[10%] w-[75%] h-[80%] rounded-t-full rounded-b-[40px] bg-gradient-to-tr from-[var(--accent-color)] to-[#bae6fd] opacity-20 transform rotate-3 z-0 transition-transform duration-700 hover:rotate-6"></div>
+                
+                <div class="relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px] lg:max-w-[420px] aspect-[4/5] rounded-t-full rounded-b-[40px] overflow-hidden shadow-2xl border-8 border-[var(--bg-card)] z-10 transition-colors duration-300">
+                    <img src="images/pexels-multitech-institute-2155038539-33925031 (1).jpg" alt="AC Technician with pricing plan" class="w-full h-full object-cover transform hover:scale-105 transition-transform duration-700">
+                </div>
+                
+                <div class="absolute bottom-[5%] lg:bottom-[15%] left-[5%] lg:-left-[5%] bg-[var(--bg-card)] p-3 md:p-4 pr-5 md:pr-6 rounded-2xl shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] border border-[var(--border-color)] flex items-center gap-3 z-20 animate-float transition-colors duration-300">
+                    <div class="w-10 md:w-12 h-10 md:h-12 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-lg md:text-xl border border-[var(--border-color)] transition-colors duration-300">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div>
+                        <p class="text-[var(--text-main)] font-black text-xs md:text-sm uppercase tracking-wide transition-colors duration-300">Upfront Costs</p>
+                        <p class="text-[var(--text-muted)] text-[10px] md:text-xs font-medium transition-colors duration-300">Zero Hidden Fees</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT AREA FOR PRICING PLANS -->
+    <main class="w-full flex flex-col" id="plans">
+        
+        <!-- PRICING SECTION 1: Residential Maintenance Plans -->
+        <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">For Homeowners</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Residential Maintenance</h2>
+                    <p class="text-[var(--text-muted)] text-base">Keep your home cool all year. Pick a plan that fits your family's needs.</p>
+                </div>
+                <!-- 3 Cards in a line, equal height utilizing grid and flex flex-col -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Basic Care</h3>
+                            <div class="flex items-baseline gap-2 mb-6">
+                                <span class="text-4xl font-black text-[var(--text-main)]">$15</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
+                            </div>
+                            <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Essential coverage to keep your single AC unit running smoothly without unexpected breakdowns.</p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> 1 Annual Tune-Up</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> Standard Filter Replacement</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> 5% Off Future Repairs</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-auto text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Select Basic</a>
+                    </div>
+                    <!-- Highlighted Card -->
+                    <div class="bg-[var(--text-main)] border border-[var(--text-main)] rounded-3xl p-8 flex flex-col h-full shadow-xl relative transform md:-translate-y-4 transition-all duration-300">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--accent-color)] text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">Most Popular</div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-white text-xl font-bold mb-2">Premium Comfort</h3>
+                            <div class="flex items-baseline gap-2 mb-6">
+                                <span class="text-4xl font-black text-white">$29</span><span class="text-gray-400 text-sm font-semibold">/mo</span>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-6 flex-1">Complete peace of mind. Covers up to two units with priority scheduling and extended discounts.</p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center gap-3 text-white text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> 2 Annual Tune-Ups</li>
+                                <li class="flex items-center gap-3 text-white text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> Premium HEPA Filters</li>
+                                <li class="flex items-center gap-3 text-white text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> 15% Off All Repairs</li>
+                                <li class="flex items-center gap-3 text-white text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> Priority 24/7 Dispatch</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-solid w-full mt-auto text-center !rounded-xl !bg-[var(--accent-color)] hover:!bg-[#38BDF8]">Select Premium</a>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Elite Whole-Home</h3>
+                            <div class="flex items-baseline gap-2 mb-6">
+                                <span class="text-4xl font-black text-[var(--text-main)]">$49</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
+                            </div>
+                            <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Total coverage for large homes. Includes unlimited units, free diagnostics, and ultimate priority.</p>
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> Unlimited Tune-Ups</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> Smart Thermostat Included</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> 25% Off All Repairs</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-check text-[var(--accent-color)]"></i> No Diagnostic Fees</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-auto text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Select Elite</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION 2: Commercial Tiers -->
+        <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">For Businesses</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Commercial HVAC Tiers</h2>
+                    <p class="text-[var(--text-muted)] text-base">Keep your workforce and customers comfortable with enterprise-grade protection.</p>
+                </div>
+                <!-- 3 Cards in a line, equal height -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Retail / Small Biz</h3>
+                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Starts at $99/mo</div>
+                            <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Perfect for local shops and small offices utilizing up to 3 split or ducted units.</p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Quarterly System Audits</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Dedicated Account Rep</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-auto text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Request Audit</a>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Corporate Building</h3>
+                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Starts at $249/mo</div>
+                            <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Tailored for mid-sized corporate environments requiring central climate zones and regular filter rotations.</p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Monthly Health Checks</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Same-Day Issue Resolution</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-auto text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Request Audit</a>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Industrial Facility</h3>
+                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Custom Quote</div>
+                            <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Heavy-duty servicing for large warehouses, data centers, and manufacturing plants with massive BTU loads.</p>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> 24/7 On-Call Engineers</li>
+                                <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Custom Duct Cleaning</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn btn-solid w-full mt-auto text-center !rounded-xl">Contact Sales</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION 3: Standard Service Rates -->
+        <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">One-Time Services</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">A La Carte Pricing</h2>
+                    <p class="text-[var(--text-muted)] text-base">Just need a quick fix? Check out our straightforward, flat-rate pricing for single visits.</p>
+                </div>
+                <!-- 3 Cards in a line, equal height -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-search"></i></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Diagnostic Visit</h3>
+                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$89 <span class="text-sm text-[var(--text-muted)] font-medium">flat fee</span></div>
+                            <p class="text-[var(--text-muted)] text-sm flex-1">Complete system inspection to identify the exact cause of failure. Fee is waived if you proceed with our repair quote.</p>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Visit</a>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-wrench"></i></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Standard Repair</h3>
+                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$149 <span class="text-sm text-[var(--text-muted)] font-medium">+ parts</span></div>
+                            <p class="text-[var(--text-muted)] text-sm flex-1">Labor cost for standard residential repairs including capacitor replacement, leak patches, and fan motor fixes.</p>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Repair</a>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
+                        <div class="flex-1 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-wind"></i></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Freon Recharge</h3>
+                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$199 <span class="text-sm text-[var(--text-muted)] font-medium">starting</span></div>
+                            <p class="text-[var(--text-muted)] text-sm flex-1">Recharge of R-410A or older refrigerants. Price scales slightly based on the exact poundage required for your system.</p>
+                        </div>
+                        <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Recharge</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SALE SECTION 1: Summer Swap Deals -->
+        <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-red-500 text-xs font-bold uppercase tracking-widest mb-3 block"><i class="fas fa-fire mr-1"></i> Hot Offers</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Summer Replacement Deals</h2>
+                    <p class="text-[var(--text-muted)] text-base">Trade in your old, inefficient unit before the peak heat hits and save hundreds.</p>
+                </div>
+                <!-- 2 Cards in a line, equal height -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Sale Banner 1 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-lg group flex flex-col h-full">
+                        <img src="images/pexels-artbovich-7535057.jpg" alt="AC Installation" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+                        <div class="relative z-10 p-10 flex-1 flex flex-col">
+                            <span class="bg-red-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Save $300</span>
+                            <h3 class="text-white text-3xl font-black mb-3">The "Cool Down" Bundle</h3>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-1 max-w-md">Purchase any 2-Ton or larger Smart Inverter Split AC and receive a complete, professional installation for a flat $99 (normally $399).</p>
+                            <div class="mt-auto pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <p class="text-white font-bold text-sm">Valid until August 31st</p>
+                                <a href="contact.html" class="btn bg-white !text-black hover:bg-gray-200 !rounded-full !py-2 !px-6 text-xs w-full sm:w-auto text-center">Claim Deal</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Sale Banner 2 -->
+                    <div class="relative rounded-3xl overflow-hidden shadow-lg group flex flex-col h-full">
+                        <img src="images/pexels-birgitboellinger-33097872.jpg" alt="Commercial AC" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-dark)]/90 to-[var(--accent-color)]/70"></div>
+                        <div class="relative z-10 p-10 flex-1 flex flex-col">
+                            <span class="bg-white text-[var(--accent-dark)] text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Trade-In Offer</span>
+                            <h3 class="text-white text-3xl font-black mb-3">Old Unit Buyback</h3>
+                            <p class="text-blue-100 text-sm leading-relaxed mb-6 flex-1 max-w-md">Is your current AC over 10 years old? Let us recycle it! We will credit you up to $500 towards the purchase of a brand new, high-efficiency Central Air System.</p>
+                            <div class="mt-auto pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
+                                <p class="text-white font-bold text-sm">Free Removal Included</p>
+                                <a href="contact.html" class="btn bg-[var(--bg-card)] !text-[var(--text-main)] hover:bg-gray-100 !rounded-full !py-2 !px-6 text-xs w-full sm:w-auto text-center">Get Appraisal</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SALE SECTION 2: Service Promotions -->
+        <section class="w-full py-24 bg-[var(--bg-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block"><i class="fas fa-tag mr-1"></i> Special Discounts</span>
+                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Everyday Savings</h2>
+                    <p class="text-[var(--text-muted)] text-base">We believe in giving back to the community that supports us.</p>
+                </div>
+                <!-- 2 Cards in a line, equal height -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <div class="bg-[var(--bg-card)] border-2 border-dashed border-[var(--border-color)] rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm hover:border-[var(--accent-color)] transition-colors duration-300 h-full">
+                        <div class="w-20 h-20 bg-[var(--bg-secondary)] rounded-full flex shrink-0 items-center justify-center text-[var(--accent-color)] text-3xl">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="flex-1 text-center md:text-left flex flex-col h-full">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">New Customer Welcome</h3>
+                            <p class="text-[var(--text-muted)] text-sm mb-4 flex-1">First time calling ArcticAir? Enjoy 15% off your very first repair bill or diagnostic visit just for giving us a try. No strings attached.</p>
+                            <div class="mt-auto">
+                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-bold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Use Code: WELCOME15</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-[var(--bg-card)] border-2 border-dashed border-[var(--border-color)] rounded-3xl p-8 flex flex-col md:flex-row items-center gap-6 shadow-sm hover:border-[var(--accent-color)] transition-colors duration-300 h-full">
+                        <div class="w-20 h-20 bg-[var(--bg-secondary)] rounded-full flex shrink-0 items-center justify-center text-[var(--accent-color)] text-3xl">
+                            <i class="fas fa-star-of-life"></i>
+                        </div>
+                        <div class="flex-1 text-center md:text-left flex flex-col h-full">
+                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Senior & Veteran Discount</h3>
+                            <p class="text-[var(--text-muted)] text-sm mb-4 flex-1">We honor our seniors and military veterans with a permanent, lifetime 10% discount on all parts, labor, and new installations.</p>
+                            <div class="mt-auto">
+                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-bold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Show ID to Tech</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
+                <div class="lg:col-span-4">
+                    <div class="mb-6">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
+                            <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
+                            ArcticAir
+                        </a>
+                    </div>
+                    <p class="opacity-80 leading-relaxed text-sm font-medium mb-8 max-w-sm" style="color: var(--text-muted);">
+                        Dedicated to providing high-quality air conditioning solutions. We ensure perfect climate control, unmatched efficiency, and 24/7 service support for homes and businesses.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="social-link-circle"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link-circle"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-8">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
+                        <div>
+                            <h4>Client Portal</h4>
+                            <ul class="space-y-4">
+                                <li><a href="login.html">Client Login</a></li>
+                                <li><a href="user.html">Service Dashboard</a></li>
+                                <li><a href="pricing.html">Maintenance Plans</a></li>
+                                <li><a href="blog.html">HVAC News</a></li>
+                                <li><a href="faq.html">Service FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4>Our Solutions</h4>
+                            <ul class="space-y-4">
+                                <li><a href="services.html">AC Installation</a></li>
+                                <li><a href="services.html">Emergency Repair</a></li>
+                                <li><a href="services.html">Routine Maintenance</a></li>
+                                <li><a href="services.html">Commercial HVAC</a></li>
+                                <li><a href="services.html">Air Quality Audits</a></li>
+                            </ul>
+                        </div>
+                        <div class="sm:col-span-2 md:col-span-1">
+                            <h4>Headquarters</h4>
+                            <ul class="space-y-4 text-[var(--text-muted)] text-sm font-medium">
+                                <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0" style="color: var(--accent-color);"></i><span>404 Cooling Avenue<br>Climate City, TX 75001</span></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0" style="color: var(--accent-color);"></i><a href="tel:+15550198" class="break-all hover:text-[var(--accent-color)]">+1 (555) 800-COOL</a></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0" style="color: var(--accent-color);"></i><a href="contact.html" class="break-all hover:text-[var(--accent-color)]">support@arcticair.com</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center text-xs gap-6 font-semibold uppercase tracking-widest">
+                <p style="color: var(--text-muted);">&copy; 2026 ArcticAir Sales & Service. All rights reserved.</p>
+                <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Warranty Info</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('main-nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenu = document.getElementById('close-menu');
+        const drawerOverlay = document.getElementById('drawer-overlay');
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
+            drawerOverlay.classList.toggle('active');
+            document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        mobileBtn.onclick = toggleMenu;
+        closeMenu.onclick = toggleMenu;
+        drawerOverlay.onclick = toggleMenu;
+
+        const themeDesktop = document.getElementById('theme-toggle-desktop');
+        const themeMobile = document.getElementById('theme-toggle-mobile');
+        const theme = localStorage.getItem('theme') || 'light';
+
+        function updateThemeUI(isDark) {
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                if (themeMobile) themeMobile.classList.add('active');
+            } else {
+                document.body.classList.remove('dark-mode');
+                if (themeMobile) themeMobile.classList.remove('active');
+            }
+        }
+
+        updateThemeUI(theme === 'dark');
+
+        function toggleTheme() {
+            const isDark = !document.body.classList.contains('dark-mode');
+            updateThemeUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        themeDesktop.onclick = toggleTheme;
+        if (themeMobile) themeMobile.onclick = toggleTheme;
+
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMobile = document.getElementById('rtl-toggle-mobile');
+        const dir = localStorage.getItem('dir') || 'ltr';
+
+        function updateRTLUI(currentDir) {
+            const isRTL = currentDir === 'rtl';
+            if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
+            if (rtlMobile) rtlMobile.innerText = isRTL ? 'RTL' : 'LTR';
+        }
+
+        if (dir === 'rtl') {
+            document.documentElement.dir = 'rtl';
+        }
+        updateRTLUI(dir);
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
+            updateRTLUI(newDir);
+        }
+
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
+        if (rtlMobile) rtlMobile.onclick = toggleRTL;
+    </script>
+</body>
+</html>
