@@ -96,7 +96,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 40px);
-            max-width: 1300px;
+            max-width: 1380px;
             z-index: 1000;
             background: var(--nav-bg);
             backdrop-filter: blur(20px);
@@ -194,24 +194,24 @@
         [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
 
         .theme-toggle-pill {
-            width: 52px; height: 28px; background: var(--bg-secondary); border-radius: 30px; position: relative;
-            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px; position: relative;
+            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
             border: 1px solid var(--border-color);
         }
-        .theme-toggle-pill i { font-size: 10px; z-index: 1; }
+        .theme-toggle-pill i { font-size: 12px; z-index: 1; }
         .theme-toggle-pill .fa-sun { color: #f59e0b; }
         .theme-toggle-pill .fa-moon { color: #999; }
         .theme-toggle-pill .thumb {
-            position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: white;
+            position: absolute; top: 2px; left: 2px; width: 26px; height: 26px; background: white;
             border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
         }
-        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(24px); background: #333; border-color: var(--border-color); }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(48px); background: #333; border-color: var(--border-color); }
 
         .rtl-btn-style {
-            width: 44px; height: 28px; background: var(--bg-secondary); border-radius: 30px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px;
             border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 800; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
+            font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
         }
         .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
 
@@ -267,7 +267,7 @@
         <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
             <div class="flex items-center flex-shrink-0">
                 <a href="index.html"
-                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                     style="color: var(--text-main) !important; text-decoration: none;">
                     <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                     ArcticAir
@@ -310,8 +310,8 @@
                 
                 <div class="w-px h-6 bg-[var(--border-color)] mx-2"></div>
                 
-                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !py-1.5 !px-5 !text-[11px]">Login</a>
-                <a href="register.html" class="btn btn-solid !py-1.5 !px-5 !text-[11px]">Register</a>
+                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Login</a>
+                <a href="register.html" class="btn btn-solid !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Register</a>
             </div>
 
             <div class="xl:hidden flex items-center justify-end gap-4">
@@ -327,7 +327,7 @@
 
     <div class="fullscreen-menu" id="fullscreen-menu">
         <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
-            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                 style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                 ArcticAir
@@ -349,7 +349,7 @@
             <a href="contact.html" class="mobile-link" style="color: var(--accent-color);">Contact</a>
 
             <div class="px-8 mt-6 mb-2">
-                <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
+                <span class="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
             </div>
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">User Dashboard</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
@@ -376,21 +376,21 @@
     </div>
 
     <!-- CONTACT PAGE HERO BANNER -->
-    <section class="relative w-full h-[100dvh] pt-[80px] lg:pt-[100px] flex items-center overflow-hidden bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-color)]">
+    <section class="relative w-full min-h-[100dvh] pb-12 lg:pb-0 pt-[100px] lg:pt-[120px] lg:pt-[100px] flex items-center overflow-hidden bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-color)]">
         
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div class="absolute -top-[10%] -right-[5%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full bg-[var(--accent-color)] opacity-5 blur-[100px]"></div>
             <div class="absolute top-[40%] -left-[10%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full bg-[#38BDF8] opacity-5 blur-[120px]"></div>
         </div>
 
-        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10 h-full max-h-[800px]">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10 h-auto lg:h-full lg:max-h-[800px]">
             
             <div class="flex flex-col items-center lg:items-start justify-center text-center lg:text-left h-full">
-                <span class="text-[var(--accent-dark)] bg-[var(--menu-hover-bg)] text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4 md:mb-6 px-4 py-2 rounded-full border border-[var(--border-color)] inline-flex items-center backdrop-blur-sm transition-colors duration-300">
+                <span class="text-[var(--accent-dark)] bg-[var(--menu-hover-bg)] text-xs md:text-sm font-semibold uppercase tracking-[0.15em] mb-4 md:mb-6 px-4 py-2 rounded-full border border-[var(--border-color)] inline-flex items-center backdrop-blur-sm transition-colors duration-300">
                     <i class="fas fa-headset mr-2"></i> Get In Touch
                 </span>
 
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 md:mb-6 text-[var(--text-main)] tracking-tight capitalize transition-colors duration-300">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-4 md:mb-6 text-[var(--text-main)] tracking-tight capitalize transition-colors duration-300">
                     Let's Talk <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-color)] to-[var(--accent-dark)]">Climate.</span>
                 </h1>
@@ -421,7 +421,7 @@
                         <i class="fas fa-map-marker-alt"></i>
                     </div>
                     <div>
-                        <p class="text-[var(--text-main)] font-black text-xs md:text-sm uppercase tracking-wide transition-colors duration-300">Local Experts</p>
+                        <p class="text-[var(--text-main)] font-semibold text-xs md:text-sm uppercase tracking-wide transition-colors duration-300">Local Experts</p>
                         <p class="text-[var(--text-muted)] text-[10px] md:text-xs font-medium transition-colors duration-300">Serving Your Area</p>
                     </div>
                 </div>
@@ -437,34 +437,34 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Reach Out</span>
-                    <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)] mb-4">We are here to help</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Reach Out</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-4">We are here to help</h2>
                     <div class="w-16 h-1 bg-[var(--accent-color)] mx-auto rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
-                        <div class="w-16 h-16 bg-[var(--menu-hover-bg)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6"><i class="fas fa-phone-alt"></i></div>
-                        <h4 class="text-[var(--text-main)] font-bold text-lg mb-2">Call Us</h4>
+                        <div class="w-16 h-16 bg-[var(--menu-hover-bg)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6"><i class="fas fa-phone-alt fa-flip-horizontal"></i></div>
+                        <h4 class="text-[var(--text-main)] font-semibold text-lg mb-2">Call Us</h4>
                         <p class="text-[var(--text-muted)] text-sm mb-4">Available 24/7 for emergencies.</p>
-                        <a href="tel:+15558002665" class="text-[var(--accent-color)] font-black text-lg hover:underline">+1 (555) 800-COOL</a>
+                        <a href="tel:+15558002665" class="text-[var(--accent-color)] font-semibold text-lg hover:underline">+1 (555) 800-COOL</a>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <div class="w-16 h-16 bg-[var(--menu-hover-bg)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6"><i class="fas fa-envelope"></i></div>
-                        <h4 class="text-[var(--text-main)] font-bold text-lg mb-2">Email Us</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-lg mb-2">Email Us</h4>
                         <p class="text-[var(--text-muted)] text-sm mb-4">We reply within 24 hours.</p>
-                        <a href="mailto:support@arcticair.com" class="text-[var(--accent-color)] font-bold text-base hover:underline break-all">support@arcticair.com</a>
+                        <a href="mailto:support@arcticair.com" class="text-[var(--accent-color)] font-semibold text-base hover:underline break-all">support@arcticair.com</a>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <div class="w-16 h-16 bg-[var(--menu-hover-bg)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6"><i class="fas fa-map-marker-alt"></i></div>
-                        <h4 class="text-[var(--text-main)] font-bold text-lg mb-2">Visit Us</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-lg mb-2">Visit Us</h4>
                         <p class="text-[var(--text-muted)] text-sm mb-4">Drop by our main office.</p>
-                        <span class="text-[var(--accent-color)] font-bold text-sm">404 Cooling Ave,<br>Climate City, TX 75001</span>
+                        <span class="text-[var(--accent-color)] font-semibold text-sm">404 Cooling Ave,<br>Climate City, TX 75001</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow">
                         <div class="w-16 h-16 bg-[var(--menu-hover-bg)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-6"><i class="fas fa-clock"></i></div>
-                        <h4 class="text-[var(--text-main)] font-bold text-lg mb-2">Working Hours</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-lg mb-2">Working Hours</h4>
                         <p class="text-[var(--text-muted)] text-sm mb-4">Standard office schedule.</p>
-                        <span class="text-[var(--accent-color)] font-bold text-sm">Mon - Fri: 8am - 6pm<br>Sat - Sun: Dispatch Only</span>
+                        <span class="text-[var(--accent-color)] font-semibold text-sm">Mon - Fri: 8am - 6pm<br>Sat - Sun: Dispatch Only</span>
                     </div>
                 </div>
             </div>
@@ -474,8 +474,8 @@
         <section id="contact-form" class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                 <div class="flex flex-col">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Send a Message</span>
-                    <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)] mb-6">Schedule Service</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Send a Message</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-6">Schedule Service</h2>
                     <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-10">Fill out the form below to request a quote or schedule a maintenance visit. For immediate emergency dispatch, please call us directly.</p>
                     <div class="w-full aspect-video rounded-3xl overflow-hidden border-4 border-[var(--border-color)] shadow-md hidden lg:block">
                         <img src="images/pexels-jose-andres-pacheco-cortes-3641213-5463575.jpg" alt="Customer Service" class="w-full h-full object-cover">
@@ -484,20 +484,20 @@
                 <form class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-[32px] p-8 md:p-12 shadow-lg flex flex-col gap-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="flex flex-col gap-2">
-                            <label class="text-[var(--text-main)] font-bold text-sm">First Name</label>
+                            <label class="text-[var(--text-main)] font-semibold text-sm">First Name</label>
                             <input type="text" class="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)] transition-colors" placeholder="John">
                         </div>
                         <div class="flex flex-col gap-2">
-                            <label class="text-[var(--text-main)] font-bold text-sm">Last Name</label>
+                            <label class="text-[var(--text-main)] font-semibold text-sm">Last Name</label>
                             <input type="text" class="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)] transition-colors" placeholder="Doe">
                         </div>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[var(--text-main)] font-bold text-sm">Email Address</label>
+                        <label class="text-[var(--text-main)] font-semibold text-sm">Email Address</label>
                         <input type="email" class="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)] transition-colors" placeholder="john@example.com">
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[var(--text-main)] font-bold text-sm">Service Needed</label>
+                        <label class="text-[var(--text-main)] font-semibold text-sm">Service Needed</label>
                         <select class="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)] transition-colors appearance-none">
                             <option value="">Select an option...</option>
                             <option value="repair">AC Repair</option>
@@ -506,7 +506,7 @@
                         </select>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label class="text-[var(--text-main)] font-bold text-sm">Message</label>
+                        <label class="text-[var(--text-main)] font-semibold text-sm">Message</label>
                         <textarea rows="4" class="w-full bg-[var(--bg-secondary)] border border-[var(--border-color)] rounded-xl px-4 py-3 text-[var(--text-main)] focus:outline-none focus:border-[var(--accent-color)] transition-colors resize-none" placeholder="Tell us how we can help..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-solid w-full !py-4 !text-sm !rounded-xl mt-2">Send Message</button>
@@ -518,8 +518,8 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)] relative">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-12 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Find Us</span>
-                    <h2 class="text-3xl md:text-4xl font-black capitalize tracking-tight text-[var(--text-main)]">Headquarters Location</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Find Us</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold capitalize tracking-tight text-[var(--text-main)]">Headquarters Location</h2>
                 </div>
                 <div class="relative w-full h-[500px] rounded-[40px] overflow-hidden border-4 border-[var(--border-color)] shadow-xl group">
                     <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
@@ -533,9 +533,9 @@
                     </iframe>
                     <!-- Floating Location Card inside Map -->
                     <div class="absolute bottom-8 left-8 md:bottom-12 md:left-12 bg-[var(--bg-card)] p-6 md:p-8 rounded-3xl shadow-2xl border border-[var(--border-color)] z-20 max-w-sm">
-                        <h3 class="text-[var(--text-main)] font-black text-xl mb-2">ArcticAir HQ</h3>
+                        <h3 class="text-[var(--text-main)] font-semibold text-xl mb-2">ArcticAir HQ</h3>
                         <p class="text-[var(--text-muted)] text-sm mb-4">404 Cooling Avenue, Climate City, TX 75001, United States.</p>
-                        <a href="https://maps.google.com" target="_blank" class="text-[var(--accent-color)] font-bold text-sm flex items-center gap-2 hover:text-[var(--accent-dark)] transition-colors">
+                        <a href="https://maps.google.com" target="_blank" class="text-[var(--accent-color)] font-semibold text-sm flex items-center gap-2 hover:text-[var(--accent-dark)] transition-colors">
                             Get Directions <i class="fas fa-external-link-alt text-xs"></i>
                         </a>
                     </div>
@@ -547,39 +547,39 @@
         <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 flex flex-col lg:flex-row gap-16 items-center">
                 <div class="lg:w-1/3 flex flex-col items-start text-left">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Our Coverage</span>
-                    <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)] mb-6">Areas We Serve</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Our Coverage</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-6">Areas We Serve</h2>
                     <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-8">We proudly dispatch our certified technicians across the greater metropolitan area. If your city is listed, we are ready to assist you.</p>
                     <a href="#contact-form" class="btn btn-outline !py-3 !px-8">Check Availability</a>
                 </div>
                 <div class="lg:w-2/3 w-full grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     <!-- Area Items -->
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Climate City</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Climate City</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">North Haven</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">North Haven</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Westbrook Valley</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Westbrook Valley</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Eastwood</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Eastwood</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">South Pointe</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">South Pointe</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Riverdale District</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Riverdale District</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Cedar Grove</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Cedar Grove</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Pine Hill</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Pine Hill</span>
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-2xl p-4 flex items-center gap-3 shadow-sm hover:-translate-y-1 transition-transform">
-                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-bold text-sm">Oakridge</span>
+                        <i class="fas fa-map-pin text-[var(--accent-color)]"></i><span class="text-[var(--text-main)] font-semibold text-sm">Oakridge</span>
                     </div>
                 </div>
             </div>
@@ -595,7 +595,7 @@
                 <div class="w-20 h-20 bg-white text-[var(--accent-dark)] rounded-full flex items-center justify-center text-4xl mb-8 shadow-xl animate-float">
                     <i class="fas fa-exclamation-triangle"></i>
                 </div>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-6 tracking-tight capitalize">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold text-white mb-6 tracking-tight capitalize">
                     AC Broken Down? <br> We are available 24/7.
                 </h2>
                 <p class="text-blue-100 text-lg md:text-xl font-medium mb-10 max-w-2xl">
@@ -603,7 +603,7 @@
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
                     <a href="tel:+1555800COOL" class="btn bg-white !text-[var(--accent-dark)] hover:bg-gray-100 !py-4 !px-10 text-base shadow-2xl flex items-center justify-center gap-3 !rounded-2xl">
-                        <i class="fas fa-phone-volume animate-pulse text-red-500"></i> Dispatch Emergency Tech
+                        <i class="fas fa-phone-volume fa-flip-horizontal animate-pulse text-red-500"></i> Dispatch Emergency Tech
                     </a>
                 </div>
             </div>
@@ -616,7 +616,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
                 <div class="lg:col-span-4">
                     <div class="mb-6">
-                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
                             <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                             ArcticAir
                         </a>
@@ -658,7 +658,7 @@
                             <h4>Headquarters</h4>
                             <ul class="space-y-4 text-[var(--text-muted)] text-sm font-medium">
                                 <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0" style="color: var(--accent-color);"></i><span>404 Cooling Avenue<br>Climate City, TX 75001</span></li>
-                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0" style="color: var(--accent-color);"></i><a href="tel:+15550198" class="break-all hover:text-[var(--accent-color)]">+1 (555) 800-COOL</a></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-phone fa-flip-horizontal shrink-0" style="color: var(--accent-color);"></i><a href="tel:+15550198" class="break-all hover:text-[var(--accent-color)]">+1 (555) 800-COOL</a></li>
                                 <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0" style="color: var(--accent-color);"></i><a href="contact.html" class="break-all hover:text-[var(--accent-color)]">support@arcticair.com</a></li>
                             </ul>
                         </div>

@@ -95,7 +95,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 40px);
-            max-width: 1300px;
+            max-width: 1380px;
             z-index: 1000;
             background: var(--nav-bg);
             backdrop-filter: blur(20px);
@@ -193,24 +193,24 @@
         [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
 
         .theme-toggle-pill {
-            width: 52px; height: 28px; background: var(--bg-secondary); border-radius: 30px; position: relative;
-            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px; position: relative;
+            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
             border: 1px solid var(--border-color);
         }
-        .theme-toggle-pill i { font-size: 10px; z-index: 1; }
+        .theme-toggle-pill i { font-size: 12px; z-index: 1; }
         .theme-toggle-pill .fa-sun { color: #f59e0b; }
         .theme-toggle-pill .fa-moon { color: #999; }
         .theme-toggle-pill .thumb {
-            position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: white;
+            position: absolute; top: 2px; left: 2px; width: 26px; height: 26px; background: white;
             border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
         }
-        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(24px); background: #333; border-color: var(--border-color); }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(48px); background: #333; border-color: var(--border-color); }
 
         .rtl-btn-style {
-            width: 44px; height: 28px; background: var(--bg-secondary); border-radius: 30px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px;
             border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 800; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
+            font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
         }
         .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
 
@@ -266,7 +266,7 @@
         <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
             <div class="flex items-center flex-shrink-0">
                 <a href="index.html"
-                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                     style="color: var(--text-main) !important; text-decoration: none;">
                     <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                     ArcticAir
@@ -311,8 +311,8 @@
                 <div class="w-px h-6 bg-[var(--border-color)] mx-2"></div>
                 
                 <!-- Buttons left completely untouched -->
-                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !py-1.5 !px-5 !text-[11px]">Login</a>
-                <a href="register.html" class="btn btn-solid !py-1.5 !px-5 !text-[11px]">Register</a>
+                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Login</a>
+                <a href="register.html" class="btn btn-solid !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Register</a>
             </div>
 
             <div class="xl:hidden flex items-center justify-end gap-4">
@@ -328,7 +328,7 @@
 
     <div class="fullscreen-menu" id="fullscreen-menu">
         <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
-            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                 style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                 ArcticAir
@@ -351,7 +351,7 @@
             <a href="contact.html" class="mobile-link">Contact</a>
 
             <div class="px-8 mt-6 mb-2">
-                <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
+                <span class="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
             </div>
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">User Dashboard</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
@@ -378,33 +378,31 @@
     </div>
 
     <!-- HOME PAGE 2: NEW ALTERNATIVE HERO BANNER (Full-width immersive image with frosted glass overlay) -->
-    <section class="relative w-full h-[100dvh] flex items-center overflow-hidden">
+    <section class="relative w-full min-h-[100dvh] pb-12 lg:pb-0 flex items-center overflow-hidden">
         
         <!-- Full-Width Background Image -->
         <div class="absolute inset-0 z-0 bg-[var(--bg-color)]">
-            <img src="images/pexels-jose-andres-pacheco-cortes-3641213-5463575.jpg" alt="Commercial HVAC System" class="w-full h-full object-cover animate-zoom opacity-90">
-            <!-- Dynamic Gradient Overlay adapting to light/dark modes -->
-            <div class="absolute inset-0 bg-gradient-to-r from-[var(--bg-color)] via-[var(--bg-color)]/90 to-transparent"></div>
+            <img src="images/pexels-jose-andres-pacheco-cortes-3641213-5463575.jpg" alt="Commercial HVAC System" class="w-full h-full object-cover animate-zoom">
+            <!-- Overlay adapting perfectly to light/dark modes -->
+            <div class="absolute inset-0 bg-[var(--bg-color)] opacity-90"></div>
         </div>
 
-        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full relative z-10 pt-[80px]">
-            <!-- Glassmorphism Content Card -->
-            <div class="max-w-2xl bg-[var(--bg-card)]/80 backdrop-blur-xl border border-[var(--border-color)] shadow-[0_30px_60px_rgba(0,0,0,0.12)] p-10 md:p-14 rounded-[40px]">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full relative z-10 pt-[120px] lg:pt-[80px] flex flex-col items-center text-center justify-center">
                 
-                <span class="inline-flex items-center gap-2 bg-[var(--bg-secondary)] text-[var(--accent-color)] font-extrabold text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-[var(--accent-color)]/20 mb-6">
+                <span class="inline-flex items-center gap-2 bg-[var(--bg-secondary)] text-[var(--accent-color)] font-semibold text-xs uppercase tracking-widest px-4 py-2 rounded-full border border-[var(--accent-color)]/20 mb-6">
                     <i class="fas fa-star"></i> Industry Leaders
                 </span>
 
-                <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-[var(--text-main)] leading-[1.1] tracking-tight mb-6 capitalize">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-semibold text-[var(--text-main)] leading-[1.1] tracking-tight mb-6 capitalize max-w-4xl">
                     Your Ultimate <br>
                     <span class="text-[var(--accent-color)]">Climate Partner.</span>
                 </h1>
 
-                <p class="text-[var(--text-muted)] text-base md:text-lg leading-relaxed font-medium mb-10">
+                <p class="text-[var(--text-main)] text-base md:text-lg leading-relaxed font-medium mb-10 max-w-2xl">
                     Experience unrivaled comfort with our cutting-edge heating, ventilation, and air conditioning solutions. Designed for efficiency, built for longevity.
                 </p>
 
-                <div class="flex flex-col sm:flex-row gap-4">
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                     <a href="services.html" class="btn btn-solid !py-4 !px-8 text-sm !rounded-full shadow-lg shadow-[var(--accent-color)]/30">
                         View Our Services
                     </a>
@@ -414,22 +412,21 @@
                 </div>
 
                 <!-- Quick Stats Footer inside the card -->
-                <div class="mt-10 pt-6 border-t border-[var(--border-color)] grid grid-cols-3 gap-4">
+                <div class="mt-10 pt-6 border-t border-[var(--border-color)] grid grid-cols-3 gap-4 max-w-2xl w-full">
                     <div>
-                        <h4 class="text-[var(--text-main)] font-black text-xl">15+</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-xl">15+</h4>
                         <p class="text-[var(--text-muted)] text-xs font-semibold uppercase">Years Exp</p>
                     </div>
                     <div>
-                        <h4 class="text-[var(--text-main)] font-black text-xl">24/7</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-xl">24/7</h4>
                         <p class="text-[var(--text-muted)] text-xs font-semibold uppercase">Support</p>
                     </div>
                     <div>
-                        <h4 class="text-[var(--text-main)] font-black text-xl">100%</h4>
+                        <h4 class="text-[var(--text-main)] font-semibold text-xl">100%</h4>
                         <p class="text-[var(--text-muted)] text-xs font-semibold uppercase">Certified</p>
                     </div>
                 </div>
 
-            </div>
         </div>
     </section>
 
@@ -440,28 +437,28 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Expert Solutions</span>
-                    <h2 class="text-3xl md:text-5xl font-black tracking-tight text-[var(--text-main)] mb-4 capitalize">Our Core Services</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Expert Solutions</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-4 capitalize">Our Core Services</h2>
                     <div class="w-16 h-1 bg-[var(--accent-color)] mx-auto rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div class="bg-[var(--bg-card)] rounded-[2rem] p-8 border border-[var(--border-color)] shadow-sm hover:-translate-y-2 transition-transform duration-300 group">
                         <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-2xl flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-snowflake"></i></div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Cooling Systems</h3>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Cooling Systems</h3>
                         <p class="text-[var(--text-muted)] leading-relaxed mb-6 flex-1">Expert installation and repair of all AC units, ensuring maximum efficiency and comfort during the hottest months.</p>
-                        <a href="services.html" class="text-[var(--accent-color)] font-bold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="services.html" class="text-[var(--accent-color)] font-semibold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="bg-[var(--bg-card)] rounded-[2rem] p-8 border border-[var(--border-color)] shadow-sm hover:-translate-y-2 transition-transform duration-300 group">
                         <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-2xl flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-fire"></i></div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Heating Solutions</h3>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Heating Solutions</h3>
                         <p class="text-[var(--text-muted)] leading-relaxed mb-6 flex-1">Comprehensive heating services including furnace repairs and heat pump installations for winter warmth.</p>
-                        <a href="services.html" class="text-[var(--accent-color)] font-bold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="services.html" class="text-[var(--accent-color)] font-semibold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="bg-[var(--bg-card)] rounded-[2rem] p-8 border border-[var(--border-color)] shadow-sm hover:-translate-y-2 transition-transform duration-300 group">
                         <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-2xl flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-wind"></i></div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Air Quality Upgrades</h3>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Air Quality Upgrades</h3>
                         <p class="text-[var(--text-muted)] leading-relaxed mb-6 flex-1">Advanced ventilation, duct cleaning, and purification systems to keep your indoor air safe and breathable.</p>
-                        <a href="services.html" class="text-[var(--accent-color)] font-bold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
+                        <a href="services.html" class="text-[var(--accent-color)] font-semibold text-sm hover:underline flex items-center gap-2 mt-auto">Read More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -471,35 +468,35 @@
         <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="flex flex-col items-start order-2 lg:order-1">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Why Us</span>
-                    <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)] mb-6">Setting the Standard in HVAC</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Why Us</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-6">Setting the Standard in HVAC</h2>
                     <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-8">We combine decades of technical expertise with a commitment to customer satisfaction. Our transparent pricing and 24/7 availability make us the trusted choice.</p>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--accent-color)] shrink-0"><i class="fas fa-check"></i></div>
                             <div>
-                                <h4 class="text-[var(--text-main)] font-bold mb-1">Licensed Techs</h4>
+                                <h4 class="text-[var(--text-main)] font-semibold mb-1">Licensed Techs</h4>
                                 <p class="text-[var(--text-muted)] text-sm">Fully certified & insured.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--accent-color)] shrink-0"><i class="fas fa-check"></i></div>
                             <div>
-                                <h4 class="text-[var(--text-main)] font-bold mb-1">Upfront Pricing</h4>
+                                <h4 class="text-[var(--text-main)] font-semibold mb-1">Upfront Pricing</h4>
                                 <p class="text-[var(--text-muted)] text-sm">No hidden fees ever.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--accent-color)] shrink-0"><i class="fas fa-check"></i></div>
                             <div>
-                                <h4 class="text-[var(--text-main)] font-bold mb-1">Fast Response</h4>
+                                <h4 class="text-[var(--text-main)] font-semibold mb-1">Fast Response</h4>
                                 <p class="text-[var(--text-muted)] text-sm">Emergency dispatching.</p>
                             </div>
                         </div>
                         <div class="flex items-start gap-4">
                             <div class="w-10 h-10 rounded-full bg-[var(--bg-card)] border border-[var(--border-color)] flex items-center justify-center text-[var(--accent-color)] shrink-0"><i class="fas fa-check"></i></div>
                             <div>
-                                <h4 class="text-[var(--text-main)] font-bold mb-1">Guaranteed Work</h4>
+                                <h4 class="text-[var(--text-main)] font-semibold mb-1">Guaranteed Work</h4>
                                 <p class="text-[var(--text-muted)] text-sm">Warranties on parts & labor.</p>
                             </div>
                         </div>
@@ -516,8 +513,8 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-20 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">How It Works</span>
-                    <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)] mb-4">Get Cool in 3 Easy Steps</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">How It Works</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-4">Get Cool in 3 Easy Steps</h2>
                     <div class="w-16 h-1 bg-[var(--accent-color)] mx-auto rounded-full"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
@@ -525,18 +522,18 @@
                     <div class="hidden md:block absolute top-12 left-[16%] right-[16%] h-1 border-t-2 border-dashed border-[var(--border-color)] z-0"></div>
                     
                     <div class="flex flex-col items-center text-center relative z-10">
-                        <div class="w-24 h-24 bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl font-black shadow-lg mb-6">1</div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Schedule a Visit</h3>
+                        <div class="w-24 h-24 bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl font-semibold shadow-lg mb-6">1</div>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Schedule a Visit</h3>
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed px-4">Book an appointment online or call our 24/7 dispatch center. We'll find a time that works perfectly for your schedule.</p>
                     </div>
                     <div class="flex flex-col items-center text-center relative z-10">
-                        <div class="w-24 h-24 bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl font-black shadow-lg mb-6">2</div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Expert Diagnosis</h3>
+                        <div class="w-24 h-24 bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl font-semibold shadow-lg mb-6">2</div>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Expert Diagnosis</h3>
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed px-4">Our certified technician arrives on time, inspects your system, and provides a transparent, upfront quote.</p>
                     </div>
                     <div class="flex flex-col items-center text-center relative z-10">
-                        <div class="w-24 h-24 bg-[var(--accent-color)] border-4 border-[var(--accent-dark)] rounded-full flex items-center justify-center text-white text-3xl font-black shadow-lg mb-6">3</div>
-                        <h3 class="text-xl font-bold text-[var(--text-main)] mb-3">Enjoy Comfort</h3>
+                        <div class="w-24 h-24 bg-[var(--accent-color)] border-4 border-[var(--accent-dark)] rounded-full flex items-center justify-center text-white text-3xl font-semibold shadow-lg mb-6">3</div>
+                        <h3 class="text-xl font-semibold text-[var(--text-main)] mb-3">Enjoy Comfort</h3>
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed px-4">We complete the repair or installation swiftly and clean up the workspace, leaving you with perfect climate control.</p>
                     </div>
                 </div>
@@ -548,11 +545,11 @@
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16">
                     <div class="max-w-xl">
-                        <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">Testimonials</span>
-                        <h2 class="text-3xl md:text-5xl font-black capitalize tracking-tight text-[var(--text-main)]">Loved by Locals</h2>
+                        <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Testimonials</span>
+                        <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)]">Loved by Locals</h2>
                     </div>
                     <div class="mt-6 md:mt-0 flex gap-2">
-                        <div class="text-[var(--text-main)] font-black text-4xl mr-4">4.9/5</div>
+                        <div class="text-[var(--text-main)] font-semibold text-4xl mr-4">4.9/5</div>
                         <div class="flex text-[#f59e0b] text-xl mt-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
                     </div>
                 </div>
@@ -562,7 +559,7 @@
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-8">"Incredible service! The team arrived within an hour of my emergency call and fixed the compressor instantly. Highly recommend."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="images/pexels-steve-978743.jpg" class="w-full h-full object-cover"></div>
-                            <div><h4 class="text-[var(--text-main)] font-bold text-sm">James R.</h4><p class="text-[var(--text-muted)] text-xs">Homeowner</p></div>
+                            <div><h4 class="text-[var(--text-main)] font-semibold text-sm">James R.</h4><p class="text-[var(--text-muted)] text-xs">Homeowner</p></div>
                         </div>
                     </div>
                     <div class="bg-[var(--bg-card)] p-8 rounded-3xl border border-[var(--border-color)] shadow-sm">
@@ -570,7 +567,7 @@
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-8">"We use ArcticAir for our entire office building's maintenance. They are professional, transparent with pricing, and always on time."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="images/pexels-fhstudio-21621355.jpg" class="w-full h-full object-cover"></div>
-                            <div><h4 class="text-[var(--text-main)] font-bold text-sm">Linda M.</h4><p class="text-[var(--text-muted)] text-xs">Property Manager</p></div>
+                            <div><h4 class="text-[var(--text-main)] font-semibold text-sm">Linda M.</h4><p class="text-[var(--text-muted)] text-xs">Property Manager</p></div>
                         </div>
                     </div>
                     <div class="bg-[var(--bg-card)] p-8 rounded-3xl border border-[var(--border-color)] shadow-sm">
@@ -578,8 +575,163 @@
                         <p class="text-[var(--text-muted)] text-sm leading-relaxed mb-8">"The new installation was seamless. The crew was respectful of our home and the new system has cut our energy bill by 30%."</p>
                         <div class="flex items-center gap-4">
                             <div class="w-12 h-12 rounded-full bg-gray-200 overflow-hidden"><img src="images/pexels-artbovich-7535057.jpg" class="w-full h-full object-cover"></div>
-                            <div><h4 class="text-[var(--text-main)] font-bold text-sm">Robert K.</h4><p class="text-[var(--text-muted)] text-xs">Customer</p></div>
+                            <div><h4 class="text-[var(--text-main)] font-semibold text-sm">Robert K.</h4><p class="text-[var(--text-muted)] text-xs">Customer</p></div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECTION: AC PRODUCTS & CATEGORIES (~50 LINES) === -->
+        <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Premium Equipment</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-4 capitalize">AC Products & Categories</h2>
+                    <div class="w-16 h-1 bg-[var(--accent-color)] mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <!-- Product 1 -->
+                    <div class="bg-[var(--bg-card)] rounded-[2rem] p-6 border border-[var(--border-color)] text-center shadow-sm hover:shadow-lg transition-shadow group">
+                        <div class="w-20 h-20 mx-auto bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-wind"></i></div>
+                        <h3 class="text-lg font-semibold text-[var(--text-main)] mb-2">Central Air Systems</h3>
+                        <p class="text-[var(--text-muted)] text-sm mb-4">Whole-home cooling solutions for maximum comfort and efficiency.</p>
+                        <a href="services.html" class="text-[var(--accent-color)] text-xs font-semibold hover:underline">View Options &rarr;</a>
+                    </div>
+                    <!-- Product 2 -->
+                    <div class="bg-[var(--bg-card)] rounded-[2rem] p-6 border border-[var(--border-color)] text-center shadow-sm hover:shadow-lg transition-shadow group">
+                        <div class="w-20 h-20 mx-auto bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-bars"></i></div>
+                        <h3 class="text-lg font-semibold text-[var(--text-main)] mb-2">Ductless Mini-Splits</h3>
+                        <p class="text-[var(--text-muted)] text-sm mb-4">Targeted cooling for specific rooms without the need for ductwork.</p>
+                        <a href="services.html" class="text-[var(--accent-color)] text-xs font-semibold hover:underline">View Options &rarr;</a>
+                    </div>
+                    <!-- Product 3 -->
+                    <div class="bg-[var(--bg-card)] rounded-[2rem] p-6 border border-[var(--border-color)] text-center shadow-sm hover:shadow-lg transition-shadow group">
+                        <div class="w-20 h-20 mx-auto bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-thermometer-half"></i></div>
+                        <h3 class="text-lg font-semibold text-[var(--text-main)] mb-2">Heat Pumps</h3>
+                        <p class="text-[var(--text-muted)] text-sm mb-4">Versatile systems that provide both efficient cooling and heating.</p>
+                        <a href="services.html" class="text-[var(--accent-color)] text-xs font-semibold hover:underline">View Options &rarr;</a>
+                    </div>
+                    <!-- Product 4 -->
+                    <div class="bg-[var(--bg-card)] rounded-[2rem] p-6 border border-[var(--border-color)] text-center shadow-sm hover:shadow-lg transition-shadow group">
+                        <div class="w-20 h-20 mx-auto bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-3xl mb-6 group-hover:scale-110 transition-transform"><i class="fas fa-fan"></i></div>
+                        <h3 class="text-lg font-semibold text-[var(--text-main)] mb-2">Window & Portable Units</h3>
+                        <p class="text-[var(--text-muted)] text-sm mb-4">Flexible, easy-to-install cooling solutions for smaller spaces.</p>
+                        <a href="services.html" class="text-[var(--accent-color)] text-xs font-semibold hover:underline">View Options &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECTION: INSTALLATION SERVICES (~50 LINES) === -->
+        <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
+                    <img src="images/pexels-multitech-institute-2155033298-33958627.jpg" alt="AC Installation" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg-color)]/80 to-transparent flex items-end p-8">
+                        <div class="bg-[var(--bg-card)] p-4 rounded-xl shadow-lg border border-[var(--border-color)]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-[var(--accent-color)]/10 flex items-center justify-center text-[var(--accent-color)]"><i class="fas fa-shield-alt"></i></div>
+                                <div><h4 class="text-[var(--text-main)] font-semibold text-sm">10-Year Warranty</h4><p class="text-[var(--text-muted)] text-xs">On all new installations</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col items-start">
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Professional Setup</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-6">Expert AC Installation</h2>
+                    <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-8">Upgrading to a new, energy-efficient air conditioning system is a major investment. Our certified technicians ensure your new AC is sized perfectly and installed flawlessly for maximum performance and longevity.</p>
+                    <ul class="flex flex-col gap-4 mb-8 w-full">
+                        <li class="flex items-center gap-3 text-[var(--text-main)] font-medium">
+                            <i class="fas fa-check-circle text-[var(--accent-color)] text-xl"></i> Free In-Home Estimates & Sizing
+                        </li>
+                        <li class="flex items-center gap-3 text-[var(--text-main)] font-medium">
+                            <i class="fas fa-check-circle text-[var(--accent-color)] text-xl"></i> Energy-Efficient Model Selection
+                        </li>
+                        <li class="flex items-center gap-3 text-[var(--text-main)] font-medium">
+                            <i class="fas fa-check-circle text-[var(--accent-color)] text-xl"></i> Removal & Disposal of Old Units
+                        </li>
+                        <li class="flex items-center gap-3 text-[var(--text-main)] font-medium">
+                            <i class="fas fa-check-circle text-[var(--accent-color)] text-xl"></i> Post-Installation Testing & Calibration
+                        </li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-solid !py-4 !px-8 text-sm !rounded-full shadow-lg shadow-[var(--accent-color)]/30">Get a Free Estimate</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECTION: REPAIR & MAINTENANCE (~50 LINES) === -->
+        <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col items-start order-2 lg:order-1">
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">Reliable Service</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold capitalize tracking-tight text-[var(--text-main)] mb-6">Fast Repairs & Routine Maintenance</h2>
+                    <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-8">Don't let a broken AC ruin your day. Our rapid-response repair team is available 24/7. Plus, our preventative maintenance plans keep your system running smoothly year-round, preventing costly breakdowns.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full mb-8">
+                        <div class="bg-[var(--bg-secondary)] p-6 rounded-2xl border border-[var(--border-color)]">
+                            <i class="fas fa-tools text-[var(--accent-color)] text-2xl mb-4"></i>
+                            <h4 class="text-[var(--text-main)] font-semibold mb-2">Emergency Repairs</h4>
+                            <p class="text-[var(--text-muted)] text-sm">24/7 dispatch for urgent breakdowns and cooling failures.</p>
+                        </div>
+                        <div class="bg-[var(--bg-secondary)] p-6 rounded-2xl border border-[var(--border-color)]">
+                            <i class="fas fa-clipboard-check text-[var(--accent-color)] text-2xl mb-4"></i>
+                            <h4 class="text-[var(--text-main)] font-semibold mb-2">Tune-Up Specials</h4>
+                            <p class="text-[var(--text-muted)] text-sm">Seasonal inspections to clean coils, check freon, and optimize airflow.</p>
+                        </div>
+                        <div class="bg-[var(--bg-secondary)] p-6 rounded-2xl border border-[var(--border-color)]">
+                            <i class="fas fa-leaf text-[var(--accent-color)] text-2xl mb-4"></i>
+                            <h4 class="text-[var(--text-main)] font-semibold mb-2">Filter Replacement</h4>
+                            <p class="text-[var(--text-muted)] text-sm">Improve indoor air quality and reduce strain on your compressor.</p>
+                        </div>
+                        <div class="bg-[var(--bg-secondary)] p-6 rounded-2xl border border-[var(--border-color)]">
+                            <i class="fas fa-calendar-alt text-[var(--accent-color)] text-2xl mb-4"></i>
+                            <h4 class="text-[var(--text-main)] font-semibold mb-2">Maintenance Plans</h4>
+                            <p class="text-[var(--text-muted)] text-sm">Priority service and discounts for our annual club members.</p>
+                        </div>
+                    </div>
+                    <a href="services.html" class="btn btn-outline !border-[var(--text-main)] !text-[var(--text-main)] hover:!border-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !py-4 !px-8 text-sm !rounded-full">Explore Service Plans</a>
+                </div>
+                <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden shadow-xl order-1 lg:order-2">
+                    <img src="images/pexels-multitech-institute-2155038539-35157345.jpg" alt="AC Maintenance" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </section>
+
+        <!-- === SECTION: SERVICE PROCESS (~50 LINES) === -->
+        <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
+            <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
+                <div class="text-center mb-16 max-w-2xl mx-auto">
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">How It Works</span>
+                    <h2 class="text-3xl md:text-5xl font-semibold tracking-tight text-[var(--text-main)] mb-4 capitalize">Our Simple Service Process</h2>
+                    <div class="w-16 h-1 bg-[var(--accent-color)] mx-auto rounded-full"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                    <!-- Connecting Line for Desktop -->
+                    <div class="hidden md:block absolute top-12 left-[12%] right-[12%] h-[2px] bg-gradient-to-r from-transparent via-[var(--border-color)] to-transparent z-0"></div>
+                    
+                    <!-- Step 1 -->
+                    <div class="relative z-10 flex flex-col items-center text-center group">
+                        <div class="w-24 h-24 rounded-full bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] shadow-lg flex items-center justify-center text-2xl text-[var(--accent-color)] font-bold mb-6 group-hover:-translate-y-2 transition-transform">1</div>
+                        <h4 class="text-lg font-semibold text-[var(--text-main)] mb-2">Schedule Service</h4>
+                        <p class="text-[var(--text-muted)] text-sm px-4">Book online or call us 24/7 to set up an appointment at your convenience.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="relative z-10 flex flex-col items-center text-center group">
+                        <div class="w-24 h-24 rounded-full bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] shadow-lg flex items-center justify-center text-2xl text-[var(--accent-color)] font-bold mb-6 group-hover:-translate-y-2 transition-transform">2</div>
+                        <h4 class="text-lg font-semibold text-[var(--text-main)] mb-2">Expert Diagnosis</h4>
+                        <p class="text-[var(--text-muted)] text-sm px-4">Our tech arrives on time, inspects your system, and identifies the exact issue.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="relative z-10 flex flex-col items-center text-center group">
+                        <div class="w-24 h-24 rounded-full bg-[var(--bg-card)] border-4 border-[var(--bg-secondary)] shadow-lg flex items-center justify-center text-2xl text-[var(--accent-color)] font-bold mb-6 group-hover:-translate-y-2 transition-transform">3</div>
+                        <h4 class="text-lg font-semibold text-[var(--text-main)] mb-2">Upfront Pricing</h4>
+                        <p class="text-[var(--text-muted)] text-sm px-4">We provide a clear, transparent quote before any repair work begins.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="relative z-10 flex flex-col items-center text-center group">
+                        <div class="w-24 h-24 rounded-full bg-[var(--accent-color)] border-4 border-[var(--bg-secondary)] shadow-lg flex items-center justify-center text-2xl text-white font-bold mb-6 group-hover:-translate-y-2 transition-transform"><i class="fas fa-check"></i></div>
+                        <h4 class="text-lg font-semibold text-[var(--text-main)] mb-2">Swift Resolution</h4>
+                        <p class="text-[var(--text-muted)] text-sm px-4">Your system is fixed promptly, leaving your home perfectly chilled and comfortable.</p>
                     </div>
                 </div>
             </div>
@@ -589,11 +741,16 @@
         <section class="w-full py-24 bg-[var(--bg-color)] relative overflow-hidden">
             <div class="max-w-[1200px] mx-auto px-6 lg:px-12 relative z-10">
                 <div class="bg-[var(--accent-color)] rounded-[40px] shadow-2xl p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 overflow-hidden relative">
-                    <div class="absolute -right-20 -top-20 w-64 h-64 border-[30px] border-white/10 rounded-full pointer-events-none"></div>
-                    <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                    <!-- Background Image for CTA -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="images/pexels-anil-yildirim-595720-28261178.jpg" alt="Comfort Upgrade" class="w-full h-full object-cover opacity-20 mix-blend-overlay">
+                    </div>
+                    
+                    <div class="absolute -right-20 -top-20 w-64 h-64 border-[30px] border-white/10 rounded-full pointer-events-none z-0"></div>
+                    <div class="absolute -left-10 -bottom-10 w-40 h-40 bg-white/10 rounded-full blur-2xl pointer-events-none z-0"></div>
                     
                     <div class="flex-1 text-center md:text-left z-10">
-                        <h2 class="text-3xl md:text-5xl font-black text-white mb-6 capitalize leading-tight">
+                        <h2 class="text-3xl md:text-5xl font-semibold text-white mb-6 capitalize leading-tight">
                             Ready to upgrade <br> your comfort?
                         </h2>
                         <p class="text-white/90 text-lg mb-8 max-w-lg mx-auto md:mx-0">
@@ -619,7 +776,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
                 <div class="lg:col-span-4">
                     <div class="mb-6">
-                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
                             <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                             ArcticAir
                         </a>

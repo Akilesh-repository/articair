@@ -96,7 +96,7 @@
             left: 50%;
             transform: translateX(-50%);
             width: calc(100% - 40px);
-            max-width: 1300px;
+            max-width: 1380px;
             z-index: 1000;
             background: var(--nav-bg);
             backdrop-filter: blur(20px);
@@ -194,24 +194,24 @@
         [dir="rtl"] .dropdown-item:hover { padding-left: 16px; padding-right: 20px; }
 
         .theme-toggle-pill {
-            width: 52px; height: 28px; background: var(--bg-secondary); border-radius: 30px; position: relative;
-            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px; position: relative;
+            cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
             border: 1px solid var(--border-color);
         }
-        .theme-toggle-pill i { font-size: 10px; z-index: 1; }
+        .theme-toggle-pill i { font-size: 12px; z-index: 1; }
         .theme-toggle-pill .fa-sun { color: #f59e0b; }
         .theme-toggle-pill .fa-moon { color: #999; }
         .theme-toggle-pill .thumb {
-            position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: white;
+            position: absolute; top: 2px; left: 2px; width: 26px; height: 26px; background: white;
             border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); z-index: 2; border: 1px solid var(--border-color);
         }
-        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(24px); background: #333; border-color: var(--border-color); }
+        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(48px); background: #333; border-color: var(--border-color); }
 
         .rtl-btn-style {
-            width: 44px; height: 28px; background: var(--bg-secondary); border-radius: 30px;
+            width: 80px; height: 32px; background: var(--bg-secondary); border-radius: 30px;
             border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center;
-            font-size: 10px; font-weight: 800; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
+            font-size: 12px; font-weight: 600; cursor: pointer; color: var(--text-main); transition: all 0.3s ease;
         }
         .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
 
@@ -267,7 +267,7 @@
         <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
             <div class="flex items-center flex-shrink-0">
                 <a href="index.html"
-                    class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+                    class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                     style="color: var(--text-main) !important; text-decoration: none;">
                     <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                     ArcticAir
@@ -312,8 +312,8 @@
                 <div class="w-px h-6 bg-[var(--border-color)] mx-2"></div>
                 
                 <!-- Buttons left completely untouched -->
-                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !py-1.5 !px-5 !text-[11px]">Login</a>
-                <a href="register.html" class="btn btn-solid !py-1.5 !px-5 !text-[11px]">Register</a>
+                <a href="login.html" class="btn btn-outline !border-[var(--accent-color)] !text-[var(--accent-color)] hover:!bg-[var(--accent-color)] hover:!text-white !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Login</a>
+                <a href="register.html" class="btn btn-solid !w-[80px] !h-[32px] flex items-center justify-center !p-0 !text-[12px] !rounded-[30px]">Register</a>
             </div>
 
             <div class="xl:hidden flex items-center justify-end gap-4">
@@ -329,7 +329,7 @@
 
     <div class="fullscreen-menu" id="fullscreen-menu">
         <div class="w-full px-8 py-6 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
-            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider"
+            <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider"
                 style="color: var(--text-main) !important; text-decoration: none;">
                 <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                 ArcticAir
@@ -352,7 +352,7 @@
             <a href="contact.html" class="mobile-link">Contact</a>
 
             <div class="px-8 mt-6 mb-2">
-                <span class="text-[10px] font-bold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
+                <span class="text-[10px] font-semibold text-[var(--text-muted)] uppercase tracking-widest">Portals</span>
             </div>
             <a href="user.html" class="mobile-link !text-sm text-[var(--text-muted)]">User Dashboard</a>
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)]">Admin Dashboard</a>
@@ -378,21 +378,21 @@
         </div>
     </div>
 
-    <section class="relative w-full h-[100dvh] pt-[80px] lg:pt-[100px] flex items-center overflow-hidden bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-color)]">
+    <section class="relative w-full min-h-[100dvh] pb-12 lg:pb-0 pt-[100px] lg:pt-[120px] lg:pt-[100px] flex items-center overflow-hidden bg-gradient-to-b from-[var(--bg-secondary)] to-[var(--bg-color)]">
         
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
             <div class="absolute -top-[10%] -right-[5%] w-[40vw] h-[40vw] max-w-[600px] max-h-[600px] rounded-full bg-[var(--accent-color)] opacity-5 blur-[100px]"></div>
             <div class="absolute top-[40%] -left-[10%] w-[30vw] h-[30vw] max-w-[500px] max-h-[500px] rounded-full bg-[#38BDF8] opacity-5 blur-[120px]"></div>
         </div>
 
-        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10 h-full max-h-[800px]">
+        <div class="max-w-[1440px] mx-auto px-6 lg:px-12 w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative z-10 h-auto lg:h-full lg:max-h-[800px]">
             
             <div class="flex flex-col items-center lg:items-start justify-center text-center lg:text-left h-full">
-                <span class="text-[var(--accent-dark)] bg-[var(--menu-hover-bg)] text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] mb-4 md:mb-6 px-4 py-2 rounded-full border border-[var(--border-color)] inline-flex items-center backdrop-blur-sm transition-colors duration-300">
+                <span class="text-[var(--accent-dark)] bg-[var(--menu-hover-bg)] text-xs md:text-sm font-semibold uppercase tracking-[0.15em] mb-4 md:mb-6 px-4 py-2 rounded-full border border-[var(--border-color)] inline-flex items-center backdrop-blur-sm transition-colors duration-300">
                     <i class="fas fa-tags mr-2"></i> Transparent Pricing
                 </span>
 
-                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] mb-4 md:mb-6 text-[var(--text-main)] tracking-tight capitalize transition-colors duration-300">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-[1.1] mb-4 md:mb-6 text-[var(--text-main)] tracking-tight capitalize transition-colors duration-300">
                     Clear Plans, <br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-color)] to-[var(--accent-dark)]">No Hidden Fees.</span>
                 </h1>
@@ -423,7 +423,7 @@
                         <i class="fas fa-check-circle"></i>
                     </div>
                     <div>
-                        <p class="text-[var(--text-main)] font-black text-xs md:text-sm uppercase tracking-wide transition-colors duration-300">Upfront Costs</p>
+                        <p class="text-[var(--text-main)] font-semibold text-xs md:text-sm uppercase tracking-wide transition-colors duration-300">Upfront Costs</p>
                         <p class="text-[var(--text-muted)] text-[10px] md:text-xs font-medium transition-colors duration-300">Zero Hidden Fees</p>
                     </div>
                 </div>
@@ -439,17 +439,17 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">For Homeowners</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Residential Maintenance</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">For Homeowners</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-[var(--text-main)] mb-4">Residential Maintenance</h2>
                     <p class="text-[var(--text-muted)] text-base">Keep your home cool all year. Pick a plan that fits your family's needs.</p>
                 </div>
                 <!-- 3 Cards in a line, equal height utilizing grid and flex flex-col -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Basic Care</h3>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Basic Care</h3>
                             <div class="flex items-baseline gap-2 mb-6">
-                                <span class="text-4xl font-black text-[var(--text-main)]">$15</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
+                                <span class="text-4xl font-semibold text-[var(--text-main)]">$15</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
                             </div>
                             <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Essential coverage to keep your single AC unit running smoothly without unexpected breakdowns.</p>
                             <ul class="space-y-4 mb-8">
@@ -461,12 +461,12 @@
                         <a href="contact.html" class="btn btn-outline w-full mt-auto text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Select Basic</a>
                     </div>
                     <!-- Highlighted Card -->
-                    <div class="bg-[var(--text-main)] border border-[var(--text-main)] rounded-3xl p-8 flex flex-col h-full shadow-xl relative transform md:-translate-y-4 transition-all duration-300">
-                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--accent-color)] text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full shadow-md">Most Popular</div>
+                    <div class="bg-slate-900 border-2 border-[var(--accent-color)] rounded-3xl p-8 flex flex-col h-full shadow-xl relative transform md:-translate-y-4 transition-all duration-300">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[var(--accent-color)] text-white text-[10px] font-semibold uppercase tracking-widest px-4 py-1 rounded-full shadow-md">Most Popular</div>
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-white text-xl font-bold mb-2">Premium Comfort</h3>
+                            <h3 class="text-white text-xl font-semibold mb-2">Premium Comfort</h3>
                             <div class="flex items-baseline gap-2 mb-6">
-                                <span class="text-4xl font-black text-white">$29</span><span class="text-gray-400 text-sm font-semibold">/mo</span>
+                                <span class="text-4xl font-semibold text-white">$29</span><span class="text-gray-400 text-sm font-semibold">/mo</span>
                             </div>
                             <p class="text-gray-300 text-sm mb-6 flex-1">Complete peace of mind. Covers up to two units with priority scheduling and extended discounts.</p>
                             <ul class="space-y-4 mb-8">
@@ -480,9 +480,9 @@
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Elite Whole-Home</h3>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Elite Whole-Home</h3>
                             <div class="flex items-baseline gap-2 mb-6">
-                                <span class="text-4xl font-black text-[var(--text-main)]">$49</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
+                                <span class="text-4xl font-semibold text-[var(--text-main)]">$49</span><span class="text-[var(--text-muted)] text-sm font-semibold">/mo</span>
                             </div>
                             <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Total coverage for large homes. Includes unlimited units, free diagnostics, and ultimate priority.</p>
                             <ul class="space-y-4 mb-8">
@@ -502,16 +502,16 @@
         <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">For Businesses</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Commercial HVAC Tiers</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">For Businesses</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-[var(--text-main)] mb-4">Commercial HVAC Tiers</h2>
                     <p class="text-[var(--text-muted)] text-base">Keep your workforce and customers comfortable with enterprise-grade protection.</p>
                 </div>
                 <!-- 3 Cards in a line, equal height -->
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Retail / Small Biz</h3>
-                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Starts at $99/mo</div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Retail / Small Biz</h3>
+                            <div class="text-[var(--accent-color)] font-semibold text-2xl mb-4">Starts at $99/mo</div>
                             <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Perfect for local shops and small offices utilizing up to 3 split or ducted units.</p>
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Quarterly System Audits</li>
@@ -522,8 +522,8 @@
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Corporate Building</h3>
-                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Starts at $249/mo</div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Corporate Building</h3>
+                            <div class="text-[var(--accent-color)] font-semibold text-2xl mb-4">Starts at $249/mo</div>
                             <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Tailored for mid-sized corporate environments requiring central climate zones and regular filter rotations.</p>
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> Monthly Health Checks</li>
@@ -534,8 +534,8 @@
                     </div>
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Industrial Facility</h3>
-                            <div class="text-[var(--accent-color)] font-black text-2xl mb-4">Custom Quote</div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Industrial Facility</h3>
+                            <div class="text-[var(--accent-color)] font-semibold text-2xl mb-4">Custom Quote</div>
                             <p class="text-[var(--text-muted)] text-sm mb-6 flex-1">Heavy-duty servicing for large warehouses, data centers, and manufacturing plants with massive BTU loads.</p>
                             <ul class="space-y-3 mb-8">
                                 <li class="flex items-center gap-3 text-[var(--text-main)] text-sm font-medium"><i class="fas fa-arrow-right text-[var(--accent-color)]"></i> 24/7 On-Call Engineers</li>
@@ -552,8 +552,8 @@
         <section class="w-full py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block">One-Time Services</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">A La Carte Pricing</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block">One-Time Services</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-[var(--text-main)] mb-4">Individual Services & Repairs</h2>
                     <p class="text-[var(--text-muted)] text-base">Just need a quick fix? Check out our straightforward, flat-rate pricing for single visits.</p>
                 </div>
                 <!-- 3 Cards in a line, equal height -->
@@ -561,8 +561,8 @@
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-search"></i></div>
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Diagnostic Visit</h3>
-                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$89 <span class="text-sm text-[var(--text-muted)] font-medium">flat fee</span></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Diagnostic Visit</h3>
+                            <div class="text-3xl font-semibold text-[var(--text-main)] mb-4">$89 <span class="text-sm text-[var(--text-muted)] font-medium">flat fee</span></div>
                             <p class="text-[var(--text-muted)] text-sm flex-1">Complete system inspection to identify the exact cause of failure. Fee is waived if you proceed with our repair quote.</p>
                         </div>
                         <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Visit</a>
@@ -570,8 +570,8 @@
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-wrench"></i></div>
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Standard Repair</h3>
-                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$149 <span class="text-sm text-[var(--text-muted)] font-medium">+ parts</span></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Standard Repair</h3>
+                            <div class="text-3xl font-semibold text-[var(--text-main)] mb-4">$149 <span class="text-sm text-[var(--text-muted)] font-medium">+ parts</span></div>
                             <p class="text-[var(--text-muted)] text-sm flex-1">Labor cost for standard residential repairs including capacitor replacement, leak patches, and fan motor fixes.</p>
                         </div>
                         <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Repair</a>
@@ -579,8 +579,8 @@
                     <div class="bg-[var(--bg-card)] border border-[var(--border-color)] rounded-3xl p-8 flex flex-col h-full shadow-sm hover:shadow-lg transition-all duration-300">
                         <div class="flex-1 flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center text-[var(--accent-color)] text-2xl mb-4"><i class="fas fa-wind"></i></div>
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Freon Recharge</h3>
-                            <div class="text-3xl font-black text-[var(--text-main)] mb-4">$199 <span class="text-sm text-[var(--text-muted)] font-medium">starting</span></div>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Freon Recharge</h3>
+                            <div class="text-3xl font-semibold text-[var(--text-main)] mb-4">$199 <span class="text-sm text-[var(--text-muted)] font-medium">starting</span></div>
                             <p class="text-[var(--text-muted)] text-sm flex-1">Recharge of R-410A or older refrigerants. Price scales slightly based on the exact poundage required for your system.</p>
                         </div>
                         <a href="contact.html" class="btn btn-outline w-full mt-6 text-center !rounded-xl hover:bg-[var(--accent-color)] hover:text-white">Book Recharge</a>
@@ -593,8 +593,8 @@
         <section class="w-full py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-red-500 text-xs font-bold uppercase tracking-widest mb-3 block"><i class="fas fa-fire mr-1"></i> Hot Offers</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Summer Replacement Deals</h2>
+                    <span class="text-red-500 text-xs font-semibold uppercase tracking-widest mb-3 block"><i class="fas fa-fire mr-1"></i> Hot Offers</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-[var(--text-main)] mb-4">Summer Replacement Deals</h2>
                     <p class="text-[var(--text-muted)] text-base">Trade in your old, inefficient unit before the peak heat hits and save hundreds.</p>
                 </div>
                 <!-- 2 Cards in a line, equal height -->
@@ -602,13 +602,13 @@
                     <!-- Sale Banner 1 -->
                     <div class="relative rounded-3xl overflow-hidden shadow-lg group flex flex-col h-full">
                         <img src="images/pexels-artbovich-7535057.jpg" alt="AC Installation" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-black/40"></div>
+                        <div class="absolute inset-0 bg-black opacity-70"></div>
                         <div class="relative z-10 p-10 flex-1 flex flex-col">
-                            <span class="bg-red-500 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Save $300</span>
-                            <h3 class="text-white text-3xl font-black mb-3">The "Cool Down" Bundle</h3>
+                            <span class="bg-red-500 text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Save $300</span>
+                            <h3 class="text-white text-3xl font-semibold mb-3">The "Cool Down" Bundle</h3>
                             <p class="text-gray-300 text-sm leading-relaxed mb-6 flex-1 max-w-md">Purchase any 2-Ton or larger Smart Inverter Split AC and receive a complete, professional installation for a flat $99 (normally $399).</p>
                             <div class="mt-auto pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <p class="text-white font-bold text-sm">Valid until August 31st</p>
+                                <p class="text-white font-semibold text-sm">Valid until August 31st</p>
                                 <a href="contact.html" class="btn bg-white !text-black hover:bg-gray-200 !rounded-full !py-2 !px-6 text-xs w-full sm:w-auto text-center">Claim Deal</a>
                             </div>
                         </div>
@@ -616,13 +616,13 @@
                     <!-- Sale Banner 2 -->
                     <div class="relative rounded-3xl overflow-hidden shadow-lg group flex flex-col h-full">
                         <img src="images/pexels-birgitboellinger-33097872.jpg" alt="Commercial AC" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-dark)]/90 to-[var(--accent-color)]/70"></div>
+                        <div class="absolute inset-0 bg-gradient-to-r from-[var(--accent-dark)] to-[var(--accent-color)] opacity-90"></div>
                         <div class="relative z-10 p-10 flex-1 flex flex-col">
-                            <span class="bg-white text-[var(--accent-dark)] text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Trade-In Offer</span>
-                            <h3 class="text-white text-3xl font-black mb-3">Old Unit Buyback</h3>
+                            <span class="bg-white text-[var(--accent-dark)] text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full w-max mb-4">Trade-In Offer</span>
+                            <h3 class="text-white text-3xl font-semibold mb-3">Old Unit Buyback</h3>
                             <p class="text-blue-100 text-sm leading-relaxed mb-6 flex-1 max-w-md">Is your current AC over 10 years old? Let us recycle it! We will credit you up to $500 towards the purchase of a brand new, high-efficiency Central Air System.</p>
                             <div class="mt-auto pt-6 border-t border-white/20 flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <p class="text-white font-bold text-sm">Free Removal Included</p>
+                                <p class="text-white font-semibold text-sm">Free Removal Included</p>
                                 <a href="contact.html" class="btn bg-[var(--bg-card)] !text-[var(--text-main)] hover:bg-gray-100 !rounded-full !py-2 !px-6 text-xs w-full sm:w-auto text-center">Get Appraisal</a>
                             </div>
                         </div>
@@ -635,8 +635,8 @@
         <section class="w-full py-24 bg-[var(--bg-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center mb-16 max-w-2xl mx-auto">
-                    <span class="text-[var(--accent-color)] text-xs font-bold uppercase tracking-widest mb-3 block"><i class="fas fa-tag mr-1"></i> Special Discounts</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-[var(--text-main)] mb-4">Everyday Savings</h2>
+                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-widest mb-3 block"><i class="fas fa-tag mr-1"></i> Special Discounts</span>
+                    <h2 class="text-3xl md:text-4xl font-semibold text-[var(--text-main)] mb-4">Everyday Savings</h2>
                     <p class="text-[var(--text-muted)] text-base">We believe in giving back to the community that supports us.</p>
                 </div>
                 <!-- 2 Cards in a line, equal height -->
@@ -646,10 +646,10 @@
                             <i class="fas fa-user-plus"></i>
                         </div>
                         <div class="flex-1 text-center md:text-left flex flex-col h-full">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">New Customer Welcome</h3>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">New Customer Welcome</h3>
                             <p class="text-[var(--text-muted)] text-sm mb-4 flex-1">First time calling ArcticAir? Enjoy 15% off your very first repair bill or diagnostic visit just for giving us a try. No strings attached.</p>
                             <div class="mt-auto">
-                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-bold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Use Code: WELCOME15</span>
+                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-semibold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Use Code: WELCOME15</span>
                             </div>
                         </div>
                     </div>
@@ -658,10 +658,10 @@
                             <i class="fas fa-star-of-life"></i>
                         </div>
                         <div class="flex-1 text-center md:text-left flex flex-col h-full">
-                            <h3 class="text-[var(--text-main)] text-xl font-bold mb-2">Senior & Veteran Discount</h3>
+                            <h3 class="text-[var(--text-main)] text-xl font-semibold mb-2">Senior & Veteran Discount</h3>
                             <p class="text-[var(--text-muted)] text-sm mb-4 flex-1">We honor our seniors and military veterans with a permanent, lifetime 10% discount on all parts, labor, and new installations.</p>
                             <div class="mt-auto">
-                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-bold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Show ID to Tech</span>
+                                <span class="bg-[var(--menu-hover-bg)] text-[var(--accent-dark)] text-xs font-semibold px-3 py-1 rounded-md border border-[var(--accent-color)]/20">Show ID to Tech</span>
                             </div>
                         </div>
                     </div>
@@ -676,7 +676,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
                 <div class="lg:col-span-4">
                     <div class="mb-6">
-                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-black tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
+                        <a href="index.html" class="inline-flex items-center gap-2 text-2xl font-semibold tracking-wider" style="color: var(--text-main) !important; text-decoration: none;">
                             <i class="fas fa-snowflake" style="color: var(--accent-color); font-size: 1.4rem;"></i>
                             ArcticAir
                         </a>
